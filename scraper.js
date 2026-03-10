@@ -86,13 +86,11 @@ async function scrapePage(browser, url, checkIn) {
 
   const results = await page.evaluate((agencyRules) => {
     function identifyAgency(urr) {
-      const id2Match = urr.match(/id2=([^&]+)/);
-      if (!id2Match) return null;
-      const ids = id2Match[1].split(';');
-      for (const id of ids) {
-        for (const rule of agencyRules) {
-          if (id.includes(rule.pattern)) return rule.name;
-        }
+      const idMatch = urr.match(/id=(\d+)/);
+      if (!idMatch) return null;
+      const id = idMatch[1];
+      for (const rule of agencyRules) {
+        if (id.includes(rule.pattern)) return rule.name;
       }
       return null;
     }
@@ -108,26 +106,20 @@ async function scrapePage(browser, url, checkIn) {
         continue;
       }
 
-      const agencyLis = tr.querySelectorAll('li.s8.i_t1');
-      if (agencyLis.length === 0) continue;
-
-      const li = agencyLis[0];
-      const urr = li.getAttribute('urr') || '';
-      const agency = identifyAgency(urr);
-      if (!agency) continue;
-
-      // Fiyat
       const priceEl = tr.querySelector('td.c_pe b');
       if (!priceEl) continue;
       const priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''));
       if (!priceRub) continue;
 
-      // Oda adı
+      const operatorEl = tr.querySelector("span[style*='color']");
+      if (!operatorEl) continue;
+      const operator = operatorEl.textContent.trim();
+
       const roomEl = tr.querySelector('td.c_ns');
       const roomType = roomEl ? roomEl.textContent.trim().split('\n')[0].trim() : 'UNKNOWN';
 
       if (currentHotel) {
-        offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
+        offers.push({ agency: operator, hotelName: currentHotel, roomType, priceRub });
       }
     }
     return offers;
@@ -145,7 +137,7 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
   for (const offer of offers) {
     const key = `${checkIn}__${offer.hotelName}__${offer.roomType}`;
     if (!groups[key]) groups[key] = { hotelName: offer.hotelName, roomType: offer.roomType, peninsula: null, rivals: [] };
-    if (offer.agency === 'PENINSULA') {
+    if (offer.agency.includes('PENINSULA')) {
       if (!groups[key].peninsula || offer.priceRub < groups[key].peninsula)
         groups[key].peninsula = offer.priceRub;
     } else {
