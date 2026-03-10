@@ -13,6 +13,16 @@ const AGENCY_RULES = [
   { pattern: '103825', name: 'KILIT GLOBAL' },
 ];
 
+function identifyAgency(urr) {
+  const idMatch = urr.match(/id=(\d+)/);
+  if (!idMatch) return null;
+  const id = idMatch[1];
+  for (const rule of AGENCY_RULES) {
+    if (id.startsWith(rule.pattern)) return rule.name;
+  }
+  return null;
+}
+
 function generateUrls() {
   const urls = [];
   const now = new Date();
@@ -79,7 +89,13 @@ async function scrapePage(browser, url, checkIn) {
   await page.setViewport({ width: 1920, height: 1080 });
 
   console.log(`  Yukleniyor: ${checkIn}`);
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  } catch(e) {
+    console.log(`  Sayfa yuklenemedi: ${e.message}`);
+    await page.close();
+    return [];
+  }
   await new Promise(r => setTimeout(r, 10000));
   await autoScroll(page);
   await new Promise(r => setTimeout(r, 5000));
@@ -90,7 +106,7 @@ async function scrapePage(browser, url, checkIn) {
       if (!idMatch) return null;
       const id = idMatch[1];
       for (const rule of agencyRules) {
-        if (id.includes(rule.pattern)) return rule.name;
+        if (id.startsWith(rule.pattern)) return rule.name;
       }
       return null;
     }
@@ -100,30 +116,37 @@ async function scrapePage(browser, url, checkIn) {
     let currentHotel = '';
 
     for (const tr of allRows) {
+      // Otel adı satırı
       const hotelLink = tr.querySelector('a[href*="action=shw"]');
       if (hotelLink) {
         currentHotel = hotelLink.textContent.trim();
         continue;
       }
 
+      // Fiyat transport li'si (i_ft = transport, i_t1 = acente)
+      const agencyLi = tr.querySelector('li.s8.i_t1');
+      if (!agencyLi) continue;
+
+      const urr = agencyLi.getAttribute('urr') || '';
+      const agency = identifyAgency(urr);
+      if (!agency) continue;
+
+      // Fiyat
       const priceEl = tr.querySelector('td.c_pe b');
       if (!priceEl) continue;
       const priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''));
       if (!priceRub) continue;
 
-      const operatorEl = tr.querySelector("span[style*='color']");
-      if (!operatorEl) continue;
-      const operator = operatorEl.textContent.trim();
-
+      // Oda adı
       const roomEl = tr.querySelector('td.c_ns');
       const roomType = roomEl ? roomEl.textContent.trim().split('\n')[0].trim() : 'UNKNOWN';
 
       if (currentHotel) {
-        offers.push({ agency: operator, hotelName: currentHotel, roomType, priceRub });
+        offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
       }
     }
     return offers;
-  }, AGENCY_RULES);
+  }, agencyRules);
 
   await page.close();
   console.log(`  ${results.length} teklif bulundu.`);
@@ -137,7 +160,7 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
   for (const offer of offers) {
     const key = `${checkIn}__${offer.hotelName}__${offer.roomType}`;
     if (!groups[key]) groups[key] = { hotelName: offer.hotelName, roomType: offer.roomType, peninsula: null, rivals: [] };
-    if (offer.agency.includes('PENINSULA')) {
+    if (offer.agency === 'PENINSULA') {
       if (!groups[key].peninsula || offer.priceRub < groups[key].peninsula)
         groups[key].peninsula = offer.priceRub;
     } else {
@@ -153,7 +176,6 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
 
     newState[key] = rivalAhead;
 
-    // Sadece yeni geçişte bildir
     if (rivalAhead && !wasAhead) {
       const diff = data.peninsula - cheapest.price;
       alerts.push({
