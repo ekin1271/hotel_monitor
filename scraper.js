@@ -24,18 +24,17 @@ function loadHotelIds() {
 function generateDates() {
   const dates = [];
   const now = new Date();
-  // Başlangıç: bugün + 5 gün
-  const start = new Date(now);
-  start.setDate(start.getDate() + 5);
 
-  // İlk tarih: start'ın ayının 15'i (eğer start > 15 ise sonraki ay)
-  const firstMonth = start.getDate() > 15
-    ? new Date(start.getFullYear(), start.getMonth() + 1, 15)
-    : new Date(start.getFullYear(), start.getMonth(), 15);
+  // İlk tarih: bugün + 5 gün
+  const firstDate = new Date(now);
+  firstDate.setDate(firstDate.getDate() + 5);
 
-  // 4 ay
   for (let m = 0; m < 4; m++) {
-    const d = new Date(firstMonth.getFullYear(), firstMonth.getMonth() + m, 15);
+    // m=0: bugün+5, m=1,2,3: sonraki ayların 15'i
+    const d = m === 0
+      ? new Date(firstDate)
+      : new Date(firstDate.getFullYear(), firstDate.getMonth() + m, 15);
+
     const day = String(d.getDate()).padStart(2, '0');
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const year = d.getFullYear();
