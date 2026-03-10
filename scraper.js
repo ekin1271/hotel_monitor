@@ -44,11 +44,9 @@ async function sendTelegram(text) {
   else console.log('Telegram bildirimi gonderildi.');
 }
 
-// Mesajı 3500 karakterlik parçalara böl
 async function sendTelegramSplit(alerts) {
   const time = `\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`;
   let current = '🚨 <b>Peninsula Fiyat Uyarisi</b>\n\n';
-
   for (const a of alerts) {
     const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
     if ((current + block).length > 3500) {
@@ -61,8 +59,10 @@ async function sendTelegramSplit(alerts) {
   await sendTelegram(current + time);
 }
 
+// -------------------------------------------------------
+// Yeni loadMoreOffers fonksiyonu: <u>ЕЩЕ ПРЕДЛОЖЕНИЯ</u> tıklaması
+// -------------------------------------------------------
 async function loadMoreOffers(page) {
-  // Scroll et + butona bas, tüm oteller yüklenene kadar tekrar et
   let attempts = 0;
   const maxAttempts = 30;
 
@@ -71,28 +71,27 @@ async function loadMoreOffers(page) {
     await new Promise(r => setTimeout(r, 2000));
 
     const clicked = await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('a'));
-      const more = links.find(l =>
-        l.textContent.includes('ПРЕДЛОЖЕНИЯ') ||
-        l.textContent.includes('Ещё') ||
-        l.textContent.includes('ЕЩЕ') ||
-        l.textContent.includes('еще')
-      );
-      if (more && more.offsetParent !== null) {
-        more.click();
+      const uTag = Array.from(document.querySelectorAll('u')).find(u => u.textContent.includes('ЕЩЕ ПРЕДЛОЖЕНИЯ'));
+      if (uTag && uTag.offsetParent !== null) {
+        const aTag = uTag.closest('a');
+        if (!aTag) return false;
+        // href navigasyonunu engelle
+        aTag.addEventListener('click', e => e.preventDefault());
+        aTag.click();
         return true;
       }
       return false;
     });
 
     if (!clicked) break;
-    console.log(`    Daha fazla yukleniyor... (${attempts + 1})`);
-    // Yeni içeriğin yüklenmesini bekle
-    await new Promise(r => setTimeout(r, 5000));
+
+    console.log(`    ЕЩЕ ПРЕДЛОЖЕНИЯ butonuna basildi (${attempts + 1})`);
+    await new Promise(r => setTimeout(r, 3000)); // yeni içerik yüklenmesi için bekle
     attempts++;
   }
-  console.log(`    Toplam ${attempts} kez ek yukleme yapildi.`);
+  console.log(`    Toplam ${attempts} kez ЕЩЕ ПРЕДЛОЖЕНИЯ tıklaması yapıldı.`);
 }
+// -------------------------------------------------------
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -121,7 +120,6 @@ async function scrapePage(browser, targetUrl, checkIn) {
     console.log(`  Timeout, devam ediliyor...`);
   }
 
-  // li.s8.i_t1 elementleri gelene kadar bekle (max 30 sn)
   try {
     await page.waitForSelector('li.s8.i_t1', { timeout: 30000 });
     console.log('    Ilk teklif elemanlari yuklendi.');
@@ -130,7 +128,6 @@ async function scrapePage(browser, targetUrl, checkIn) {
   }
   await new Promise(r => setTimeout(r, 3000));
 
-  // "Daha fazla" butonuna bas, tüm oteller yüklensin
   await loadMoreOffers(page);
   await autoScroll(page);
   await new Promise(r => setTimeout(r, 3000));
@@ -139,7 +136,6 @@ async function scrapePage(browser, targetUrl, checkIn) {
   const targetDate = urlDateMatch ? urlDateMatch[1] : null;
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
 
-  // Debug: kaç li.s8.i_t1 var?
   const liCount = await page.evaluate(() => document.querySelectorAll('li.s8.i_t1').length);
   console.log(`    li.s8.i_t1 sayisi: ${liCount}`);
 
@@ -159,9 +155,7 @@ async function scrapePage(browser, targetUrl, checkIn) {
 
     for (const tr of allRows) {
       const hotelLink = tr.querySelector('a[href*="action=shw"]');
-      if (hotelLink) {
-        currentHotel = hotelLink.textContent.trim();
-      }
+      if (hotelLink) currentHotel = hotelLink.textContent.trim();
 
       const agencyLis = tr.querySelectorAll('li.s8.i_t1');
       if (agencyLis.length === 0) continue;
@@ -178,20 +172,15 @@ async function scrapePage(browser, targetUrl, checkIn) {
       if (!idMatch) continue;
 
       const agency = identifyAgency(idMatch[1]);
-
       let priceRub = null;
       const priceEl = tr.querySelector('td.c_pe b');
-      if (priceEl) {
-        priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''), 10);
-      }
+      if (priceEl) priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''), 10);
 
       let roomType = 'UNKNOWN';
       const roomEl = tr.querySelector('td.c_ns');
       if (roomEl) roomType = roomEl.textContent.trim().split('\n')[0].trim();
 
-      if (priceRub && currentHotel) {
-        offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
-      }
+      if (priceRub && currentHotel) offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
     }
     return offers;
   }, agencyRulesStr, targetDate);
