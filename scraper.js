@@ -4,6 +4,7 @@ const fs = require('fs');
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const STATE_FILE = 'price_state.json';
+const HOTELS_FILE = 'hotels.json';
 
 const AGENCY_RULES = [
   { pattern: '103810219', name: 'PENINSULA' },
@@ -13,21 +14,52 @@ const AGENCY_RULES = [
   { pattern: '103825', name: 'KILIT GLOBAL' },
 ];
 
-function generateUrls() {
-  const urls = [];
+function loadHotelIds() {
+  if (fs.existsSync(HOTELS_FILE)) {
+    return JSON.parse(fs.readFileSync(HOTELS_FILE, 'utf8'));
+  }
+  return [];
+}
+
+function generateDates() {
+  const dates = [];
   const now = new Date();
+  // Başlangıç: bugün + 5 gün
+  const start = new Date(now);
+  start.setDate(start.getDate() + 5);
+
+  // İlk tarih: start'ın ayının 15'i (eğer start > 15 ise sonraki ay)
+  const firstMonth = start.getDate() > 15
+    ? new Date(start.getFullYear(), start.getMonth() + 1, 15)
+    : new Date(start.getFullYear(), start.getMonth(), 15);
+
+  // 4 ay
   for (let m = 0; m < 4; m++) {
-    const date = new Date(now.getFullYear(), now.getMonth() + m, 15);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const checkIn = `15.${month}.${year}`;
-    const outDate = new Date(date);
+    const d = new Date(firstMonth.getFullYear(), firstMonth.getMonth() + m, 15);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    const checkIn = `${day}.${month}.${year}`;
+    const outDate = new Date(d);
     outDate.setDate(outDate.getDate() + 7);
     const outDay = String(outDate.getDate()).padStart(2, '0');
     const outMonth = String(outDate.getMonth() + 1).padStart(2, '0');
     const checkOut = `${outDay}.${outMonth}.${outDate.getFullYear()}`;
-    const url = `https://www.bgoperator.ru/price.shtml?action=price&tid=211&idt=&flt2=100510000863&id_price=121110211811&data=${checkIn}&d2=${checkOut}&f7=7&f3=&f8=&ho=0&ins=0-40000-EUR&flt=100411293179&p=0100319900.0100319900`;
-    urls.push({ url, checkIn });
+    dates.push({ checkIn, checkOut });
+  }
+  return dates;
+}
+
+function generateUrls() {
+  const hotelIds = loadHotelIds();
+  const dates = generateDates();
+  const urls = [];
+
+  for (const { checkIn, checkOut } of dates) {
+    for (const hotelId of hotelIds) {
+      const url = `https://www.bgoperator.ru/price.shtml?action=price&tid=211&idt=&flt2=100510000863&id_price=121110211811&data=${checkIn}&d2=${checkOut}&f7=7&f3=&f8=&ho=0&F4=${hotelId}&ins=0-40000-EUR&flt=100411293179&p=0100319900.0100319900`;
+      urls.push({ url, checkIn, hotelId });
+    }
   }
   return urls;
 }
@@ -47,7 +79,6 @@ async function sendTelegram(text) {
 async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   const time = `\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`;
 
-  // Önce rakip geçti bildirimleri
   if (aheadAlerts.length > 0) {
     let current = '🚨 <b>Rakip Öne Geçti!</b>\n\n';
     for (const a of aheadAlerts) {
@@ -62,7 +93,6 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
     await sendTelegram(current + time);
   }
 
-  // Sonra eşitlik bildirimleri
   if (equalAlerts.length > 0) {
     let current = '🟡 <b>Fiyatlar Eşitleşti!</b>\n\n';
     for (const a of equalAlerts) {
@@ -78,79 +108,24 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   }
 }
 
-async function loadMoreOffers(page) {
-  let attempts = 0;
-  const maxAttempts = 30;
-
-  while (attempts < maxAttempts) {
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await new Promise(r => setTimeout(r, 2000));
-
-    const clicked = await page.evaluate(() => {
-      const uTag = Array.from(document.querySelectorAll('u')).find(u => u.textContent.includes('ЕЩЕ ПРЕДЛОЖЕНИЯ'));
-      if (uTag && uTag.offsetParent !== null) {
-        const aTag = uTag.closest('a');
-        if (!aTag) return false;
-        aTag.addEventListener('click', e => e.preventDefault());
-        aTag.click();
-        return true;
-      }
-      return false;
-    });
-
-    if (!clicked) break;
-    console.log(`    ЕЩЕ ПРЕДЛОЖЕНИЯ butonuna basildi (${attempts + 1})`);
-    await new Promise(r => setTimeout(r, 3000));
-    attempts++;
-  }
-  console.log(`    Toplam ${attempts} kez ЕЩЕ ПРЕДЛОЖЕНИЯ tıklaması yapıldı.`);
-}
-
-async function autoScroll(page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let totalHeight = 0;
-      const distance = 500;
-      const timer = setInterval(() => {
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-        if (totalHeight >= document.body.scrollHeight) { clearInterval(timer); resolve(); }
-      }, 200);
-      setTimeout(() => { clearInterval(timer); resolve(); }, 30000);
-    });
-  });
-}
-
 async function scrapePage(browser, targetUrl, checkIn) {
-  console.log(`  Yukleniyor: ${checkIn}`);
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
 
   try {
-    await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 90000 });
-  } catch(e) {
-    console.log(`  Timeout, devam ediliyor...`);
-  }
+    await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  } catch(e) {}
 
   try {
-    await page.waitForSelector('li.s8.i_t1', { timeout: 30000 });
-    console.log('    Ilk teklif elemanlari yuklendi.');
-  } catch(e) {
-    console.log('    Uyari: li.s8.i_t1 bulunamadi, devam ediliyor...');
-  }
-  await new Promise(r => setTimeout(r, 3000));
+    await page.waitForSelector('li.s8.i_t1', { timeout: 20000 });
+  } catch(e) {}
 
-  await loadMoreOffers(page);
-  await autoScroll(page);
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise(r => setTimeout(r, 2000));
 
   const urlDateMatch = targetUrl.match(/data=(\d{2}\.\d{2}\.\d{4})/);
   const targetDate = urlDateMatch ? urlDateMatch[1] : null;
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
-
-  const liCount = await page.evaluate(() => document.querySelectorAll('li.s8.i_t1').length);
-  console.log(`    li.s8.i_t1 sayisi: ${liCount}`);
 
   const results = await page.evaluate((agencyRulesStr, targetDate) => {
     const agencyRules = JSON.parse(agencyRulesStr);
@@ -199,7 +174,6 @@ async function scrapePage(browser, targetUrl, checkIn) {
   }, agencyRulesStr, targetDate);
 
   await page.close();
-  console.log(`  ${results.length} teklif bulundu.`);
   return results;
 }
 
@@ -224,18 +198,15 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     const cheapest = data.rivals.reduce((a, b) => a.price < b.price ? a : b);
     const rivalAhead = cheapest.price < data.peninsula;
     const isEqual = cheapest.price === data.peninsula;
-    const prevStatus = prevState[key]; // 'ahead', 'equal', 'behind', undefined
+    const prevStatus = prevState[key];
 
-    // Yeni state kaydet
     newState[key] = rivalAhead ? 'ahead' : isEqual ? 'equal' : 'behind';
 
-    // Rakip yeni öne geçtiyse
     if (rivalAhead && prevStatus !== 'ahead') {
       const diff = data.peninsula - cheapest.price;
       aheadAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff });
     }
 
-    // Yeni eşitlendiyse (önceden Peninsula öndeydi veya rakip öndeydi)
     if (isEqual && prevStatus !== 'equal') {
       equalAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price });
     }
@@ -255,6 +226,12 @@ function saveState(state) {
 
 async function main() {
   console.log('Tarama basliyor...');
+  const dates = generateDates();
+  console.log('Taranan aylar:', dates.map(d => d.checkIn).join(', '));
+
+  const hotelIds = loadHotelIds();
+  console.log(`Otel sayisi: ${hotelIds.length}`);
+
   const prevState = loadState();
   const newState = { ...prevState };
   const allAheadAlerts = [];
@@ -266,12 +243,19 @@ async function main() {
   });
 
   try {
-    for (const { url, checkIn } of generateUrls()) {
-      console.log(`Taranan: ${checkIn}`);
+    const urls = generateUrls();
+    console.log(`Toplam URL: ${urls.length}`);
+
+    let completed = 0;
+    for (const { url, checkIn, hotelId } of urls) {
       const offers = await scrapePage(browser, url, checkIn);
-      const { aheadAlerts, equalAlerts } = analyzeOffers(checkIn, offers, prevState, newState);
-      allAheadAlerts.push(...aheadAlerts);
-      allEqualAlerts.push(...equalAlerts);
+      if (offers.length > 0) {
+        const { aheadAlerts, equalAlerts } = analyzeOffers(checkIn, offers, prevState, newState);
+        allAheadAlerts.push(...aheadAlerts);
+        allEqualAlerts.push(...equalAlerts);
+      }
+      completed++;
+      if (completed % 50 === 0) console.log(`  ${completed}/${urls.length} tamamlandi`);
     }
   } finally {
     await browser.close();
@@ -284,7 +268,7 @@ async function main() {
     console.log(`${allAheadAlerts.length} rakip geçti, ${allEqualAlerts.length} eşitlik uyarisi gonderiliyor...`);
     await sendTelegramSplit(allAheadAlerts, allEqualAlerts);
   } else {
-    console.log('Uyari yok, Peninsula onde veya durum degismedi.');
+    console.log('Uyari yok.');
   }
 }
 
