@@ -62,45 +62,7 @@ async function sendTelegramSplit(alerts) {
 // -------------------------------------------------------
 // Yeni loadMoreOffers fonksiyonu: <u>ЕЩЕ ПРЕДЛОЖЕНИЯ</u> tıklaması
 // -------------------------------------------------------
-async function loadMoreOffers(page) {
-
-  let clicks = 0;
-
-  while (true) {
-
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await new Promise(r => setTimeout(r, 2000));
-
-    const clicked = await page.evaluate(() => {
-
-      const uTag = Array.from(document.querySelectorAll('u'))
-        .find(u => u.textContent.includes('ЕЩЕ ПРЕДЛОЖЕНИЯ'));
-
-      if (uTag && uTag.offsetParent !== null) {
-        const aTag = uTag.closest('a');
-        if (!aTag) return false;
-
-        aTag.addEventListener('click', e => e.preventDefault());
-        aTag.click();
-        return true;
-      }
-
-      return false;
-    });
-
-    if (!clicked) {
-      console.log("    Daha fazla teklif yok.");
-      break;
-    }
-
-    clicks++;
-    console.log(`    ЕЩЕ ПРЕДЛОЖЕНИЯ butonuna basildi (${clicks})`);
-
-    await new Promise(r => setTimeout(r, 3000));
-  }
-
-  console.log(`    Toplam ${clicks} kez ЕЩЕ ПРЕДЛОЖЕНИЯ tıklaması yapıldı.`);
-}
+async function loadMoreOffers(page) { let attempts = 0; const maxAttempts = 30; while (attempts < maxAttempts) { await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight)); await new Promise(r => setTimeout(r, 2000)); const clicked = await page.evaluate(() => { const uTag = Array.from(document.querySelectorAll('u')).find(u => u.textContent.includes('ЕЩЕ ПРЕДЛОЖЕНИЯ')); if (uTag && uTag.offsetParent !== null) { const aTag = uTag.closest('a'); if (!aTag) return false; // href navigasyonunu engelle aTag.addEventListener('click', e => e.preventDefault()); aTag.click(); return true; } return false; }); if (!clicked) break; console.log( ЕЩЕ ПРЕДЛОЖЕНИЯ butonuna basildi (${attempts + 1})); await new Promise(r => setTimeout(r, 3000)); // yeni içerik yüklenmesi için bekle attempts++; } console.log( Toplam ${attempts} kez ЕЩЕ ПРЕДЛОЖЕНИЯ tıklaması yapıldı.); }
 // -------------------------------------------------------
 
 async function autoScroll(page) {
