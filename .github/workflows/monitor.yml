@@ -35,8 +35,9 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.CHAT_ID }}
         run: node scraper.js
 
-      - name: State dosyasını kaydet
+      - name: State dosyasını kaydet ve push et
         run: |
           git add price_state.json
           git diff --staged --quiet || git commit -m "state güncellendi"
-          git push
+          git pull origin main --rebase
+          git push origin main
