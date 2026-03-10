@@ -78,34 +78,44 @@ async function sendTelegram(text) {
 
 async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   const time = `\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`;
+  const allAlerts = [
+    ...aheadAlerts.map(a => ({ ...a, type: 'ahead' })),
+    ...equalAlerts.map(a => ({ ...a, type: 'equal' })),
+  ];
 
-  if (aheadAlerts.length > 0) {
-    let current = '🚨 <b>Rakip Öne Geçti!</b>\n\n';
-    for (const a of aheadAlerts) {
-      const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
-      if ((current + block).length > 3500) {
-        await sendTelegram(current);
-        current = '🚨 <b>Rakip Öne Geçti! (devam)</b>\n\n' + block;
-      } else {
-        current += block;
-      }
-    }
-    await sendTelegram(current + time);
+  if (allAlerts.length === 0) return;
+
+  // Otele göre grupla: key = "otelAdı__odaTipi"
+  const hotelGroups = {};
+  for (const a of allAlerts) {
+    const key = `${a.hotel}__${a.room}`;
+    if (!hotelGroups[key]) hotelGroups[key] = { hotel: a.hotel, room: a.room, entries: [] };
+    hotelGroups[key].entries.push(a);
   }
 
-  if (equalAlerts.length > 0) {
-    let current = '🟡 <b>Fiyatlar Eşitleşti!</b>\n\n';
-    for (const a of equalAlerts) {
-      const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🤝 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
-      if ((current + block).length > 3500) {
-        await sendTelegram(current);
-        current = '🟡 <b>Fiyatlar Eşitleşti! (devam)</b>\n\n' + block;
+  let current = '🏨 <b>Peninsula Fiyat Raporu</b>\n\n';
+  for (const group of Object.values(hotelGroups)) {
+    let block = `🏨 <b>${group.hotel}</b>\n🛏 ${group.room}\n`;
+    for (const a of group.entries) {
+      if (a.type === 'ahead') {
+        block += `  📅 ${a.checkIn} 🚨 Rakip öne geçti\n`;
+        block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
+        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB (Fark: ${a.diff.toLocaleString('tr-TR')} RUB)\n`;
       } else {
-        current += block;
+        block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşitleşti\n`;
+        block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
       }
     }
-    await sendTelegram(current + time);
+    block += `─────────────────\n`;
+
+    if ((current + block).length > 3500) {
+      await sendTelegram(current);
+      current = '🏨 <b>Peninsula Fiyat Raporu (devam)</b>\n\n' + block;
+    } else {
+      current += block;
+    }
   }
+  await sendTelegram(current + time);
 }
 
 async function scrapePage(browser, targetUrl, checkIn) {
