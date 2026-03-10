@@ -23,7 +23,7 @@
   "15.05.2026__Selenium Hotel 4*__STANDARD ROOM HBзавтраки и ужины": true,
   "15.05.2026__Selenium Hotel 4*__ECONOMY ROOM AI AIвсе включено": true,
   "15.05.2026__Selenium Hotel 4*__STANDARD ROOM AI AIвсе включено": true,
-  "15.05.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": false,
+  "15.05.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": true,
   "15.06.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": true,
   "15.06.2026__More Hotel 3*__STANDARD ROOM AIвсе включено": false,
   "15.06.2026__More Hotel 3*__FAMILY ROOM AIвсе включено": false,
@@ -119,5 +119,9 @@
   "15.08.2026__Club Marakesh Beach Hotel 4*__STANDARD RO": true,
   "15.08.2026__Club Marakesh Beach Hotel 4*__FAMILY RO": true,
   "15.08.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__STANDARD RO": false,
-  "15.08.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__UNKNOWN": false
+  "15.08.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__UNKNOWN": false,
+  "15.05.2026__Grand Hotel Derin  4*__STANDARD ROOM AIвсе включено": false,
+  "15.06.2026__Grand Hotel Derin  4*__STANDARD ROOM AIвсе включено": false,
+  "15.07.2026__Grand Hotel Derin  4*__STANDARD ROOM AIвсе включено": false,
+  "15.08.2026__Grand Hotel Derin  4*__STANDARD ROOM AIвсе включено": false
 }
