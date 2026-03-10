@@ -13,16 +13,6 @@ const AGENCY_RULES = [
   { pattern: '103825', name: 'KILIT GLOBAL' },
 ];
 
-function identifyAgency(urr) {
-  const idMatch = urr.match(/id=(\d+)/);
-  if (!idMatch) return null;
-  const id = idMatch[1];
-  for (const rule of AGENCY_RULES) {
-    if (id.startsWith(rule.pattern)) return rule.name;
-  }
-  return null;
-}
-
 function generateUrls() {
   const urls = [];
   const now = new Date();
@@ -43,26 +33,15 @@ function generateUrls() {
 }
 
 async function sendTelegram(text) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.warn('Telegram ayarlari eksik');
-    return;
-  }
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text,
-      parse_mode: 'HTML',
-      disable_web_page_preview: true,
-    }),
+    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' }),
   });
-  if (!resp.ok) {
-    console.error('Telegram hatasi:', resp.status, await resp.text());
-  } else {
-    console.log('Telegram bildirimi gonderildi.');
-  }
+  if (!resp.ok) console.error('Telegram hatasi:', await resp.text());
+  else console.log('Telegram bildirimi gonderildi.');
 }
 
 async function autoScroll(page) {
@@ -73,10 +52,7 @@ async function autoScroll(page) {
       const timer = setInterval(() => {
         window.scrollBy(0, distance);
         totalHeight += distance;
-        if (totalHeight >= document.body.scrollHeight) {
-          clearInterval(timer);
-          resolve();
-        }
+        if (totalHeight >= document.body.scrollHeight) { clearInterval(timer); resolve(); }
       }, 200);
       setTimeout(() => { clearInterval(timer); resolve(); }, 30000);
     });
@@ -87,7 +63,6 @@ async function scrapePage(browser, url, checkIn) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
-
   console.log(`  Yukleniyor: ${checkIn}`);
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
@@ -100,37 +75,33 @@ async function scrapePage(browser, url, checkIn) {
   await autoScroll(page);
   await new Promise(r => setTimeout(r, 5000));
 
-  const results = await page.evaluate((agencyRules) => {
+  // agencyRules'u JSON string olarak geçir
+  const rulesJson = JSON.stringify(AGENCY_RULES);
+
+  const results = await page.evaluate((rulesJson) => {
+    const rules = JSON.parse(rulesJson);
+
     function identifyAgency(urr) {
       const idMatch = urr.match(/id=(\d+)/);
       if (!idMatch) return null;
       const id = idMatch[1];
-      for (const rule of agencyRules) {
+      for (const rule of rules) {
         if (id.startsWith(rule.pattern)) return rule.name;
       }
       return null;
     }
-
-    const debugInfo = {
-      totalRows: document.querySelectorAll('table tr').length,
-      agencyLis: document.querySelectorAll('li.s8.i_t1').length,
-      sampleUrr: document.querySelector('li.s8.i_t1') ? document.querySelector('li.s8.i_t1').getAttribute('urr') : 'YOK',
-    };
-    console.log('DEBUG:', JSON.stringify(debugInfo));
 
     const offers = [];
     const allRows = document.querySelectorAll('table tr');
     let currentHotel = '';
 
     for (const tr of allRows) {
-      // Otel adı satırı
       const hotelLink = tr.querySelector('a[href*="action=shw"]');
       if (hotelLink) {
         currentHotel = hotelLink.textContent.trim();
         continue;
       }
 
-      // Fiyat transport li'si (i_ft = transport, i_t1 = acente)
       const agencyLi = tr.querySelector('li.s8.i_t1');
       if (!agencyLi) continue;
 
@@ -138,13 +109,11 @@ async function scrapePage(browser, url, checkIn) {
       const agency = identifyAgency(urr);
       if (!agency) continue;
 
-      // Fiyat
       const priceEl = tr.querySelector('td.c_pe b');
       if (!priceEl) continue;
       const priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''));
       if (!priceRub) continue;
 
-      // Oda adı
       const roomEl = tr.querySelector('td.c_ns');
       const roomType = roomEl ? roomEl.textContent.trim().split('\n')[0].trim() : 'UNKNOWN';
 
@@ -153,7 +122,7 @@ async function scrapePage(browser, url, checkIn) {
       }
     }
     return offers;
-  }, agencyRules);
+  }, rulesJson);
 
   await page.close();
   console.log(`  ${results.length} teklif bulundu.`);
@@ -180,23 +149,13 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     const cheapest = data.rivals.reduce((a, b) => a.price < b.price ? a : b);
     const rivalAhead = cheapest.price < data.peninsula;
     const wasAhead = prevState[key] === true;
-
     newState[key] = rivalAhead;
 
     if (rivalAhead && !wasAhead) {
       const diff = data.peninsula - cheapest.price;
-      alerts.push({
-        checkIn,
-        hotel: data.hotelName,
-        room: data.roomType,
-        peninsulaPrice: data.peninsula,
-        cheapestAgency: cheapest.agency,
-        cheapestPrice: cheapest.price,
-        diff,
-      });
+      alerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff });
     }
   }
-
   return alerts;
 }
 
@@ -216,9 +175,7 @@ function buildMessage(alerts) {
 }
 
 function loadState() {
-  if (fs.existsSync(STATE_FILE)) {
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
-  }
+  if (fs.existsSync(STATE_FILE)) return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
   return {};
 }
 
