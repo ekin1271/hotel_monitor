@@ -44,6 +44,55 @@ async function sendTelegram(text) {
   else console.log('Telegram bildirimi gonderildi.');
 }
 
+// Mesajı 3500 karakterlik parçalara böl
+async function sendTelegramSplit(alerts) {
+  const time = `\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`;
+  let current = '🚨 <b>Peninsula Fiyat Uyarisi</b>\n\n';
+
+  for (const a of alerts) {
+    const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
+    if ((current + block).length > 3500) {
+      await sendTelegram(current);
+      current = '🚨 <b>Peninsula Fiyat Uyarisi (devam)</b>\n\n' + block;
+    } else {
+      current += block;
+    }
+  }
+  await sendTelegram(current + time);
+}
+
+async function loadMoreOffers(page) {
+  // Scroll et + butona bas, tüm oteller yüklenene kadar tekrar et
+  let attempts = 0;
+  const maxAttempts = 30;
+
+  while (attempts < maxAttempts) {
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await new Promise(r => setTimeout(r, 2000));
+
+    const clicked = await page.evaluate(() => {
+      const links = Array.from(document.querySelectorAll('a'));
+      const more = links.find(l =>
+        l.textContent.includes('ПРЕДЛОЖЕНИЯ') ||
+        l.textContent.includes('Ещё') ||
+        l.textContent.includes('ЕЩЕ') ||
+        l.textContent.includes('еще')
+      );
+      if (more && more.offsetParent !== null) {
+        more.click();
+        return true;
+      }
+      return false;
+    });
+
+    if (!clicked) break;
+    console.log(`    Daha fazla yukleniyor... (${attempts + 1})`);
+    await new Promise(r => setTimeout(r, 3000));
+    attempts++;
+  }
+  console.log(`    Toplam ${attempts} kez ek yukleme yapildi.`);
+}
+
 async function autoScroll(page) {
   await page.evaluate(async () => {
     await new Promise((resolve) => {
@@ -59,11 +108,9 @@ async function autoScroll(page) {
   });
 }
 
-// Arkadaşın kodundaki gibi birebir aynı scraping
 async function scrapePage(browser, targetUrl, checkIn) {
   console.log(`  Yukleniyor: ${checkIn}`);
-  const browser2 = browser;
-  const page = await browser2.newPage();
+  const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
 
@@ -73,14 +120,16 @@ async function scrapePage(browser, targetUrl, checkIn) {
     console.log(`  Timeout, devam ediliyor...`);
   }
   await new Promise(r => setTimeout(r, 5000));
+
+  // "Daha fazla" butonuna bas, tüm oteller yüklensin
+  await loadMoreOffers(page);
   await autoScroll(page);
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 3000));
 
   const urlDateMatch = targetUrl.match(/data=(\d{2}\.\d{2}\.\d{4})/);
   const targetDate = urlDateMatch ? urlDateMatch[1] : null;
-
-  // Arkadaşın page.evaluate kodu - birebir aynı
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
+
   const results = await page.evaluate((agencyRulesStr, targetDate) => {
     const agencyRules = JSON.parse(agencyRulesStr);
 
@@ -115,29 +164,17 @@ async function scrapePage(browser, targetUrl, checkIn) {
       const idMatch = urr.match(/id=(\d+)/);
       if (!idMatch) continue;
 
-      const agencyId = idMatch[1];
-      const agency = identifyAgency(agencyId);
+      const agency = identifyAgency(idMatch[1]);
 
       let priceRub = null;
-      const buyLink = tr.querySelector('a[href*="/zaya"]');
-      if (buyLink) {
-        const trText = tr.textContent;
-        const rubMatches = trText.match(/([\d\s]{4,})\s*р\./g);
-        if (rubMatches) {
-          for (const m of rubMatches) {
-            const numMatch = m.match(/([\d\s]+)/);
-            if (numMatch) {
-              const val = parseInt(numMatch[1].replace(/\s/g, ''), 10);
-              if (val > 1000) { priceRub = val; break; }
-            }
-          }
-        }
+      const priceEl = tr.querySelector('td.c_pe b');
+      if (priceEl) {
+        priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''), 10);
       }
 
       let roomType = 'UNKNOWN';
-      const trText = tr.textContent;
-      const roomMatch = trText.match(/((?:STANDARD|FAMILY|ECO|RELAX|DELUXE|SUITE|SUPERIOR|BUNGALOW|STD|SINGLE|DOUBLE|TRIPLE|ECONOMY|COMFORT|PREMIUM|CLUB|GARDEN|SEA VIEW|POOL|APARTMENT)[\w\s().,\/-]*?(?:BB|HB|FB|AI|UAI|RO|AO))/i);
-      if (roomMatch) roomType = roomMatch[1].trim();
+      const roomEl = tr.querySelector('td.c_ns');
+      if (roomEl) roomType = roomEl.textContent.trim().split('\n')[0].trim();
 
       if (priceRub && currentHotel) {
         offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
@@ -148,9 +185,6 @@ async function scrapePage(browser, targetUrl, checkIn) {
 
   await page.close();
   console.log(`  ${results.length} teklif bulundu.`);
-  for (const o of results) {
-    console.log(`    [${o.agency}] ${o.hotelName} | ${o.roomType} | ${o.priceRub} RUB`);
-  }
   return results;
 }
 
@@ -182,21 +216,6 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     }
   }
   return alerts;
-}
-
-function buildMessage(alerts) {
-  const lines = ['🚨 <b>Peninsula Fiyat Uyarisi</b>', ''];
-  for (const a of alerts) {
-    lines.push(`📅 ${a.checkIn}`);
-    lines.push(`🏨 <b>${a.hotel}</b>`);
-    lines.push(`🛏 ${a.room}`);
-    lines.push(`📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB`);
-    lines.push(`🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB`);
-    lines.push(`📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB`);
-    lines.push('─────────────────');
-  }
-  lines.push(`\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`);
-  return lines.join('\n');
 }
 
 function loadState() {
@@ -235,7 +254,7 @@ async function main() {
 
   if (allAlerts.length > 0) {
     console.log(`${allAlerts.length} uyari gonderiliyor...`);
-    await sendTelegram(buildMessage(allAlerts));
+    await sendTelegramSplit(allAlerts);
   } else {
     console.log('Uyari yok, Peninsula onde veya durum degismedi.');
   }
