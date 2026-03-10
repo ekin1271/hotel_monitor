@@ -44,24 +44,40 @@ async function sendTelegram(text) {
   else console.log('Telegram bildirimi gonderildi.');
 }
 
-async function sendTelegramSplit(alerts) {
+async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   const time = `\n🕐 ${new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })}`;
-  let current = '🚨 <b>Peninsula Fiyat Uyarisi</b>\n\n';
-  for (const a of alerts) {
-    const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
-    if ((current + block).length > 3500) {
-      await sendTelegram(current);
-      current = '🚨 <b>Peninsula Fiyat Uyarisi (devam)</b>\n\n' + block;
-    } else {
-      current += block;
+
+  // Önce rakip geçti bildirimleri
+  if (aheadAlerts.length > 0) {
+    let current = '🚨 <b>Rakip Öne Geçti!</b>\n\n';
+    for (const a of aheadAlerts) {
+      const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n📉 Fark: ${a.diff.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
+      if ((current + block).length > 3500) {
+        await sendTelegram(current);
+        current = '🚨 <b>Rakip Öne Geçti! (devam)</b>\n\n' + block;
+      } else {
+        current += block;
+      }
     }
+    await sendTelegram(current + time);
   }
-  await sendTelegram(current + time);
+
+  // Sonra eşitlik bildirimleri
+  if (equalAlerts.length > 0) {
+    let current = '🟡 <b>Fiyatlar Eşitleşti!</b>\n\n';
+    for (const a of equalAlerts) {
+      const block = `📅 ${a.checkIn}\n🏨 <b>${a.hotel}</b>\n🛏 ${a.room}\n📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n🤝 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n─────────────────\n`;
+      if ((current + block).length > 3500) {
+        await sendTelegram(current);
+        current = '🟡 <b>Fiyatlar Eşitleşti! (devam)</b>\n\n' + block;
+      } else {
+        current += block;
+      }
+    }
+    await sendTelegram(current + time);
+  }
 }
 
-// -------------------------------------------------------
-// Yeni loadMoreOffers fonksiyonu: <u>ЕЩЕ ПРЕДЛОЖЕНИЯ</u> tıklaması
-// -------------------------------------------------------
 async function loadMoreOffers(page) {
   let attempts = 0;
   const maxAttempts = 30;
@@ -75,7 +91,6 @@ async function loadMoreOffers(page) {
       if (uTag && uTag.offsetParent !== null) {
         const aTag = uTag.closest('a');
         if (!aTag) return false;
-        // href navigasyonunu engelle
         aTag.addEventListener('click', e => e.preventDefault());
         aTag.click();
         return true;
@@ -84,14 +99,12 @@ async function loadMoreOffers(page) {
     });
 
     if (!clicked) break;
-
     console.log(`    ЕЩЕ ПРЕДЛОЖЕНИЯ butonuna basildi (${attempts + 1})`);
-    await new Promise(r => setTimeout(r, 3000)); // yeni içerik yüklenmesi için bekle
+    await new Promise(r => setTimeout(r, 3000));
     attempts++;
   }
   console.log(`    Toplam ${attempts} kez ЕЩЕ ПРЕДЛОЖЕНИЯ tıklaması yapıldı.`);
 }
-// -------------------------------------------------------
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -191,7 +204,8 @@ async function scrapePage(browser, targetUrl, checkIn) {
 }
 
 function analyzeOffers(checkIn, offers, prevState, newState) {
-  const alerts = [];
+  const aheadAlerts = [];
+  const equalAlerts = [];
   const groups = {};
 
   for (const offer of offers) {
@@ -209,15 +223,25 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     if (!data.peninsula || data.rivals.length === 0) continue;
     const cheapest = data.rivals.reduce((a, b) => a.price < b.price ? a : b);
     const rivalAhead = cheapest.price < data.peninsula;
-    const wasAhead = prevState[key] === true;
-    newState[key] = rivalAhead;
+    const isEqual = cheapest.price === data.peninsula;
+    const prevStatus = prevState[key]; // 'ahead', 'equal', 'behind', undefined
 
-    if (rivalAhead && !wasAhead) {
+    // Yeni state kaydet
+    newState[key] = rivalAhead ? 'ahead' : isEqual ? 'equal' : 'behind';
+
+    // Rakip yeni öne geçtiyse
+    if (rivalAhead && prevStatus !== 'ahead') {
       const diff = data.peninsula - cheapest.price;
-      alerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff });
+      aheadAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff });
+    }
+
+    // Yeni eşitlendiyse (önceden Peninsula öndeydi veya rakip öndeydi)
+    if (isEqual && prevStatus !== 'equal') {
+      equalAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price });
     }
   }
-  return alerts;
+
+  return { aheadAlerts, equalAlerts };
 }
 
 function loadState() {
@@ -233,7 +257,8 @@ async function main() {
   console.log('Tarama basliyor...');
   const prevState = loadState();
   const newState = { ...prevState };
-  const allAlerts = [];
+  const allAheadAlerts = [];
+  const allEqualAlerts = [];
 
   const browser = await puppeteer.launch({
     headless: 'new',
@@ -244,8 +269,9 @@ async function main() {
     for (const { url, checkIn } of generateUrls()) {
       console.log(`Taranan: ${checkIn}`);
       const offers = await scrapePage(browser, url, checkIn);
-      const alerts = analyzeOffers(checkIn, offers, prevState, newState);
-      allAlerts.push(...alerts);
+      const { aheadAlerts, equalAlerts } = analyzeOffers(checkIn, offers, prevState, newState);
+      allAheadAlerts.push(...aheadAlerts);
+      allEqualAlerts.push(...equalAlerts);
     }
   } finally {
     await browser.close();
@@ -254,9 +280,9 @@ async function main() {
   saveState(newState);
   console.log('State kaydedildi.');
 
-  if (allAlerts.length > 0) {
-    console.log(`${allAlerts.length} uyari gonderiliyor...`);
-    await sendTelegramSplit(allAlerts);
+  if (allAheadAlerts.length > 0 || allEqualAlerts.length > 0) {
+    console.log(`${allAheadAlerts.length} rakip geçti, ${allEqualAlerts.length} eşitlik uyarisi gonderiliyor...`);
+    await sendTelegramSplit(allAheadAlerts, allEqualAlerts);
   } else {
     console.log('Uyari yok, Peninsula onde veya durum degismedi.');
   }
