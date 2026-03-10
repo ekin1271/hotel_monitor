@@ -79,10 +79,10 @@ async function scrapePage(browser, url, checkIn) {
   await page.setViewport({ width: 1920, height: 1080 });
 
   console.log(`  Yukleniyor: ${checkIn}`);
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 90000 });
-  await new Promise(r => setTimeout(r, 5000));
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  await new Promise(r => setTimeout(r, 10000));
   await autoScroll(page);
-  await new Promise(r => setTimeout(r, 3000));
+  await new Promise(r => setTimeout(r, 5000));
 
   const results = await page.evaluate((agencyRules) => {
     function identifyAgency(urr) {
