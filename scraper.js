@@ -116,11 +116,19 @@ async function scrapePage(browser, targetUrl, checkIn) {
   await page.setViewport({ width: 1920, height: 1080 });
 
   try {
-    await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 90000 });
+    await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 90000 });
   } catch(e) {
     console.log(`  Timeout, devam ediliyor...`);
   }
-  await new Promise(r => setTimeout(r, 8000));
+
+  // li.s8.i_t1 elementleri gelene kadar bekle (max 30 sn)
+  try {
+    await page.waitForSelector('li.s8.i_t1', { timeout: 30000 });
+    console.log('    Ilk teklif elemanlari yuklendi.');
+  } catch(e) {
+    console.log('    Uyari: li.s8.i_t1 bulunamadi, devam ediliyor...');
+  }
+  await new Promise(r => setTimeout(r, 3000));
 
   // "Daha fazla" butonuna bas, tüm oteller yüklensin
   await loadMoreOffers(page);
