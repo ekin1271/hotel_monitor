@@ -33,14 +33,14 @@ function generateUrls() {
 }
 
 async function sendTelegram(text) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) { console.log(text); return; }
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML' }),
+    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML', disable_web_page_preview: true }),
   });
-  if (!resp.ok) console.error('Telegram hatasi:', await resp.text());
+  if (!resp.ok) console.error('Telegram hatasi:', resp.status, await resp.text());
   else console.log('Telegram bildirimi gonderildi.');
 }
 
@@ -59,36 +59,36 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapePage(browser, url, checkIn) {
-  const page = await browser.newPage();
-  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36');
-  await page.setViewport({ width: 1920, height: 1080 });
+// Arkadaşın kodundaki gibi birebir aynı scraping
+async function scrapePage(browser, targetUrl, checkIn) {
   console.log(`  Yukleniyor: ${checkIn}`);
+  const browser2 = browser;
+  const page = await browser2.newPage();
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+  await page.setViewport({ width: 1920, height: 1080 });
+
   try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await page.goto(targetUrl, { waitUntil: 'networkidle2', timeout: 90000 });
   } catch(e) {
-    console.log(`  Sayfa yuklenemedi: ${e.message}`);
-    await page.close();
-    return [];
+    console.log(`  Timeout, devam ediliyor...`);
   }
-  await new Promise(r => setTimeout(r, 10000));
+  await new Promise(r => setTimeout(r, 5000));
   await autoScroll(page);
   await new Promise(r => setTimeout(r, 5000));
 
-  // agencyRules'u JSON string olarak geçir
-  const rulesJson = JSON.stringify(AGENCY_RULES);
+  const urlDateMatch = targetUrl.match(/data=(\d{2}\.\d{2}\.\d{4})/);
+  const targetDate = urlDateMatch ? urlDateMatch[1] : null;
 
-  const results = await page.evaluate((rulesJson) => {
-    const rules = JSON.parse(rulesJson);
+  // Arkadaşın page.evaluate kodu - birebir aynı
+  const agencyRulesStr = JSON.stringify(AGENCY_RULES);
+  const results = await page.evaluate((agencyRulesStr, targetDate) => {
+    const agencyRules = JSON.parse(agencyRulesStr);
 
-    function identifyAgency(urr) {
-      const idMatch = urr.match(/id=(\d+)/);
-      if (!idMatch) return null;
-      const id = idMatch[1];
-      for (const rule of rules) {
-        if (id.startsWith(rule.pattern)) return rule.name;
+    function identifyAgency(id) {
+      for (const rule of agencyRules) {
+        if (id.includes(rule.pattern)) return rule.name;
       }
-      return null;
+      return 'BILINMEYEN';
     }
 
     const offers = [];
@@ -99,33 +99,58 @@ async function scrapePage(browser, url, checkIn) {
       const hotelLink = tr.querySelector('a[href*="action=shw"]');
       if (hotelLink) {
         currentHotel = hotelLink.textContent.trim();
-        continue;
       }
 
-      const agencyLi = tr.querySelector('li.s8.i_t1');
-      if (!agencyLi) continue;
+      const agencyLis = tr.querySelectorAll('li.s8.i_t1');
+      if (agencyLis.length === 0) continue;
 
-      const urr = agencyLi.getAttribute('urr') || '';
-      const agency = identifyAgency(urr);
-      if (!agency) continue;
+      let matchedLi = null;
+      for (const li of agencyLis) {
+        const urr = li.getAttribute('urr') || '';
+        if (targetDate && urr.includes(targetDate)) { matchedLi = li; break; }
+      }
+      if (!matchedLi) matchedLi = agencyLis[0];
 
-      const priceEl = tr.querySelector('td.c_pe b');
-      if (!priceEl) continue;
-      const priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''));
-      if (!priceRub) continue;
+      const urr = matchedLi.getAttribute('urr') || '';
+      const idMatch = urr.match(/id=(\d+)/);
+      if (!idMatch) continue;
 
-      const roomEl = tr.querySelector('td.c_ns');
-      const roomType = roomEl ? roomEl.textContent.trim().split('\n')[0].trim() : 'UNKNOWN';
+      const agencyId = idMatch[1];
+      const agency = identifyAgency(agencyId);
 
-      if (currentHotel) {
+      let priceRub = null;
+      const buyLink = tr.querySelector('a[href*="/zaya"]');
+      if (buyLink) {
+        const trText = tr.textContent;
+        const rubMatches = trText.match(/([\d\s]{4,})\s*р\./g);
+        if (rubMatches) {
+          for (const m of rubMatches) {
+            const numMatch = m.match(/([\d\s]+)/);
+            if (numMatch) {
+              const val = parseInt(numMatch[1].replace(/\s/g, ''), 10);
+              if (val > 1000) { priceRub = val; break; }
+            }
+          }
+        }
+      }
+
+      let roomType = 'UNKNOWN';
+      const trText = tr.textContent;
+      const roomMatch = trText.match(/((?:STANDARD|FAMILY|ECO|RELAX|DELUXE|SUITE|SUPERIOR|BUNGALOW|STD|SINGLE|DOUBLE|TRIPLE|ECONOMY|COMFORT|PREMIUM|CLUB|GARDEN|SEA VIEW|POOL|APARTMENT)[\w\s().,\/-]*?(?:BB|HB|FB|AI|UAI|RO|AO))/i);
+      if (roomMatch) roomType = roomMatch[1].trim();
+
+      if (priceRub && currentHotel) {
         offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
       }
     }
     return offers;
-  }, rulesJson);
+  }, agencyRulesStr, targetDate);
 
   await page.close();
   console.log(`  ${results.length} teklif bulundu.`);
+  for (const o of results) {
+    console.log(`    [${o.agency}] ${o.hotelName} | ${o.roomType} | ${o.priceRub} RUB`);
+  }
   return results;
 }
 
@@ -139,7 +164,7 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     if (offer.agency === 'PENINSULA') {
       if (!groups[key].peninsula || offer.priceRub < groups[key].peninsula)
         groups[key].peninsula = offer.priceRub;
-    } else {
+    } else if (offer.agency !== 'BILINMEYEN') {
       groups[key].rivals.push({ agency: offer.agency, price: offer.priceRub });
     }
   }
