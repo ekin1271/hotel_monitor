@@ -16,7 +16,7 @@ const AGENCY_RULES = [
 function generateUrls() {
   const urls = [];
   const now = new Date();
-  for (let m = 0; m < 6; m++) {
+  for (let m = 0; m < 4; m++) {
     const date = new Date(now.getFullYear(), now.getMonth() + m, 15);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
