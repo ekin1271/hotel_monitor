@@ -111,6 +111,13 @@ async function scrapePage(browser, url, checkIn) {
       return null;
     }
 
+    const debugInfo = {
+      totalRows: document.querySelectorAll('table tr').length,
+      agencyLis: document.querySelectorAll('li.s8.i_t1').length,
+      sampleUrr: document.querySelector('li.s8.i_t1') ? document.querySelector('li.s8.i_t1').getAttribute('urr') : 'YOK',
+    };
+    console.log('DEBUG:', JSON.stringify(debugInfo));
+
     const offers = [];
     const allRows = document.querySelectorAll('table tr');
     let currentHotel = '';
