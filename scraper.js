@@ -87,7 +87,8 @@ async function loadMoreOffers(page) {
 
     if (!clicked) break;
     console.log(`    Daha fazla yukleniyor... (${attempts + 1})`);
-    await new Promise(r => setTimeout(r, 3000));
+    // Yeni içeriğin yüklenmesini bekle
+    await new Promise(r => setTimeout(r, 5000));
     attempts++;
   }
   console.log(`    Toplam ${attempts} kez ek yukleme yapildi.`);
@@ -119,7 +120,7 @@ async function scrapePage(browser, targetUrl, checkIn) {
   } catch(e) {
     console.log(`  Timeout, devam ediliyor...`);
   }
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 8000));
 
   // "Daha fazla" butonuna bas, tüm oteller yüklensin
   await loadMoreOffers(page);
@@ -129,6 +130,10 @@ async function scrapePage(browser, targetUrl, checkIn) {
   const urlDateMatch = targetUrl.match(/data=(\d{2}\.\d{2}\.\d{4})/);
   const targetDate = urlDateMatch ? urlDateMatch[1] : null;
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
+
+  // Debug: kaç li.s8.i_t1 var?
+  const liCount = await page.evaluate(() => document.querySelectorAll('li.s8.i_t1').length);
+  console.log(`    li.s8.i_t1 sayisi: ${liCount}`);
 
   const results = await page.evaluate((agencyRulesStr, targetDate) => {
     const agencyRules = JSON.parse(agencyRulesStr);
