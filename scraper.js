@@ -110,7 +110,11 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   for (const group of Object.values(hotelGroups)) {
     let block = `🏨 <b>${group.hotel}</b>\n🛏 ${group.room}\n`;
     for (const a of group.entries) {
-      if (a.type === 'ahead') {
+      if (a.type === 'ahead' && a.newRival) {
+        block += `  📅 ${a.checkIn} 🆕 Rakip girdi (biz öndeyiz)\n`;
+        block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
+        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n`;
+      } else if (a.type === 'ahead') {
         block += `  📅 ${a.checkIn} 🚨 Rakip öne geçti\n`;
         block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
         block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB (Fark: ${a.diff.toLocaleString('tr-TR')} RUB)\n`;
@@ -222,13 +226,34 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
   }
 
   for (const [key, data] of Object.entries(groups)) {
-    if (!data.peninsula || data.rivals.length === 0) continue;
+    if (!data.peninsula) continue;
+
+    // Rakip yok — alone state kaydet
+    if (data.rivals.length === 0) {
+      newState[key] = 'alone';
+      continue;
+    }
+
     const cheapest = data.rivals.reduce((a, b) => a.price < b.price ? a : b);
     const rivalAhead = cheapest.price < data.peninsula;
     const isEqual = cheapest.price === data.peninsula;
     const prevStatus = prevState[key];
 
     newState[key] = rivalAhead ? 'ahead' : isEqual ? 'equal' : 'behind';
+
+    // Rakip yeni girdi (önceden tek veya hiç yoktu)
+    if (prevStatus === 'alone' || prevStatus === undefined) {
+      if (rivalAhead) {
+        const diff = data.peninsula - cheapest.price;
+        aheadAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff });
+      } else if (isEqual) {
+        equalAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price });
+      } else {
+        // Rakip girdi ama biz öndeyiz — newAlert
+        aheadAlerts.push({ checkIn, hotel: data.hotelName, room: data.roomType, peninsulaPrice: data.peninsula, cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price, diff: 0, newRival: true });
+      }
+      continue;
+    }
 
     if (rivalAhead && prevStatus !== 'ahead') {
       const diff = data.peninsula - cheapest.price;
@@ -319,7 +344,8 @@ async function main() {
   console.log('State kaydedildi.');
 
   if (allAheadAlerts.length > 0 || allEqualAlerts.length > 0) {
-    console.log(`${allAheadAlerts.length} rakip geçti, ${allEqualAlerts.length} eşitlik uyarisi gonderiliyor...`);
+    const newRivalCount = allAheadAlerts.filter(a => a.newRival).length;
+    console.log(`${allAheadAlerts.length} rakip geçti (${newRivalCount} yeni rakip), ${allEqualAlerts.length} eşitlik uyarisi gonderiliyor...`);
     await sendTelegramSplit(allAheadAlerts, allEqualAlerts);
   } else {
     console.log('Uyari yok.');
