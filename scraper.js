@@ -266,7 +266,7 @@ async function main() {
     // Önce tüm teklifleri tarih bazında topla (5 paralel)
     const offersByDate = {};
     let completed = 0;
-    const CONCURRENCY = 15;
+    const CONCURRENCY = 10;
 
     for (let i = 0; i < urls.length; i += CONCURRENCY) {
       const batch = urls.slice(i, i + CONCURRENCY);
