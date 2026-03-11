@@ -37,7 +37,7 @@ jobs:
 
       - name: State dosyasını kaydet ve push et
         run: |
+          git fetch origin
           git add price_state.json
           git diff --staged --quiet || git commit -m "state güncellendi"
-          git pull origin main --rebase
-          git push origin main
+          git push origin main || (git pull origin main --rebase && git push origin main)
