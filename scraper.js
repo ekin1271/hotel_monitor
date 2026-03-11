@@ -125,7 +125,7 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
   await sendTelegram(current + time);
 }
 
-async function scrapePage(browser, targetUrl, checkIn) {
+async function scrapePageOnce(browser, targetUrl, checkIn) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
@@ -191,6 +191,19 @@ async function scrapePage(browser, targetUrl, checkIn) {
   }, agencyRulesStr, targetDate);
 
   await page.close();
+  return results;
+}
+
+async function scrapePage(browser, targetUrl, checkIn) {
+  let results = await scrapePageOnce(browser, targetUrl, checkIn);
+  if (results.length === 0) {
+    console.log(`  [RETRY] 0 teklif, tekrar deneniyor: ${targetUrl}`);
+    await new Promise(r => setTimeout(r, 3000));
+    results = await scrapePageOnce(browser, targetUrl, checkIn);
+    if (results.length === 0) {
+      console.log(`  [BOŞ] Hala 0 teklif: ${targetUrl}`);
+    }
+  }
   return results;
 }
 
