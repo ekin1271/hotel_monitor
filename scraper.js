@@ -92,6 +92,14 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
     hotelGroups[key].entries.push(a);
   }
 
+  // Her grup içindeki tarihleri sırala
+  for (const group of Object.values(hotelGroups)) {
+    group.entries.sort((a, b) => {
+      const toDate = s => { const [d,m,y] = s.split('.'); return new Date(y,m-1,d); };
+      return toDate(a.checkIn) - toDate(b.checkIn);
+    });
+  }
+
   let current = '🏨 <b>Peninsula Fiyat Raporu</b>\n\n';
   for (const group of Object.values(hotelGroups)) {
     let block = `🏨 <b>${group.hotel}</b>\n🛏 ${group.room}\n`;
@@ -255,16 +263,24 @@ async function main() {
     const urls = generateUrls();
     console.log(`Toplam URL: ${urls.length}`);
 
+    // Önce tüm teklifleri tarih bazında topla
+    const offersByDate = {};
     let completed = 0;
-    for (const { url, checkIn, hotelId } of urls) {
+    for (const { url, checkIn } of urls) {
       const offers = await scrapePage(browser, url, checkIn);
       if (offers.length > 0) {
-        const { aheadAlerts, equalAlerts } = analyzeOffers(checkIn, offers, prevState, newState);
-        allAheadAlerts.push(...aheadAlerts);
-        allEqualAlerts.push(...equalAlerts);
+        if (!offersByDate[checkIn]) offersByDate[checkIn] = [];
+        offersByDate[checkIn].push(...offers);
       }
       completed++;
       if (completed % 50 === 0) console.log(`  ${completed}/${urls.length} tamamlandi`);
+    }
+
+    // Toplandıktan sonra tek seferde analiz et (tekrar eden key'ler analyzeOffers'da otomatik birleşir)
+    for (const [checkIn, offers] of Object.entries(offersByDate)) {
+      const { aheadAlerts, equalAlerts } = analyzeOffers(checkIn, offers, prevState, newState);
+      allAheadAlerts.push(...aheadAlerts);
+      allEqualAlerts.push(...equalAlerts);
     }
   } finally {
     await browser.close();
