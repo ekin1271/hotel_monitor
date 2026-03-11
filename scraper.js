@@ -145,7 +145,7 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
   } catch(e) {}
 
   try {
-    await page.waitForSelector('li.s8.i_t1', { timeout: 20000 });
+    await page.waitForSelector('li.s8.i_t1', { timeout: 30000 });
   } catch(e) {}
 
   await new Promise(r => setTimeout(r, 2000));
