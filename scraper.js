@@ -263,17 +263,24 @@ async function main() {
     const urls = generateUrls();
     console.log(`Toplam URL: ${urls.length}`);
 
-    // Önce tüm teklifleri tarih bazında topla
+    // Önce tüm teklifleri tarih bazında topla (5 paralel)
     const offersByDate = {};
     let completed = 0;
-    for (const { url, checkIn } of urls) {
-      const offers = await scrapePage(browser, url, checkIn);
-      if (offers.length > 0) {
-        if (!offersByDate[checkIn]) offersByDate[checkIn] = [];
-        offersByDate[checkIn].push(...offers);
+    const CONCURRENCY = 5;
+
+    for (let i = 0; i < urls.length; i += CONCURRENCY) {
+      const batch = urls.slice(i, i + CONCURRENCY);
+      const results = await Promise.all(
+        batch.map(({ url, checkIn }) => scrapePage(browser, url, checkIn).then(offers => ({ checkIn, offers })))
+      );
+      for (const { checkIn, offers } of results) {
+        if (offers.length > 0) {
+          if (!offersByDate[checkIn]) offersByDate[checkIn] = [];
+          offersByDate[checkIn].push(...offers);
+        }
       }
-      completed++;
-      if (completed % 50 === 0) console.log(`  ${completed}/${urls.length} tamamlandi`);
+      completed += batch.length;
+      if (completed % 50 === 0 || completed === urls.length) console.log(`  ${completed}/${urls.length} tamamlandi`);
     }
 
     // Toplandıktan sonra tek seferde analiz et (tekrar eden key'ler analyzeOffers'da otomatik birleşir)
