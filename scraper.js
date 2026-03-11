@@ -25,12 +25,18 @@ function generateDates() {
   const dates = [];
   const now = new Date();
 
-  // İlk tarih: bugün + 5 gün
+  // İlk tarih: bugün + 5 gün, ama Mart ayındaysa Nisan 15'e atla
   const firstDate = new Date(now);
   firstDate.setDate(firstDate.getDate() + 5);
 
+  if (firstDate.getMonth() === 2) {
+    // Mart (month=2) → Nisan 15'e atla
+    firstDate.setMonth(3);
+    firstDate.setDate(15);
+  }
+
   for (let m = 0; m < 4; m++) {
-    // m=0: bugün+5, m=1,2,3: sonraki ayların 15'i
+    // m=0: ilk tarih, m=1,2,3: sonraki ayların 15'i
     const d = m === 0
       ? new Date(firstDate)
       : new Date(firstDate.getFullYear(), firstDate.getMonth() + m, 15);
@@ -196,13 +202,14 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
 
 async function scrapePage(browser, targetUrl, checkIn) {
   let results = await scrapePageOnce(browser, targetUrl, checkIn);
-  if (results.length === 0) {
-    console.log(`  [RETRY] 0 teklif, tekrar deneniyor: ${targetUrl}`);
-    await new Promise(r => setTimeout(r, 3000));
+  for (let retry = 1; retry <= 2; retry++) {
+    if (results.length > 0) break;
+    console.log(`  [RETRY ${retry}] 0 teklif, tekrar deneniyor: ${targetUrl}`);
+    await new Promise(r => setTimeout(r, 5000));
     results = await scrapePageOnce(browser, targetUrl, checkIn);
-    if (results.length === 0) {
-      console.log(`  [BOŞ] Hala 0 teklif: ${targetUrl}`);
-    }
+  }
+  if (results.length === 0) {
+    console.log(`  [BOŞ] Hala 0 teklif: ${targetUrl}`);
   }
   return results;
 }
