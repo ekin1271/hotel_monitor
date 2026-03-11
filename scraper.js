@@ -201,16 +201,7 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
 }
 
 async function scrapePage(browser, targetUrl, checkIn) {
-  let results = await scrapePageOnce(browser, targetUrl, checkIn);
-  for (let retry = 1; retry <= 2; retry++) {
-    if (results.length > 0) break;
-    console.log(`  [RETRY ${retry}] 0 teklif, tekrar deneniyor: ${targetUrl}`);
-    await new Promise(r => setTimeout(r, 5000));
-    results = await scrapePageOnce(browser, targetUrl, checkIn);
-  }
-  if (results.length === 0) {
-    console.log(`  [BOŞ] Hala 0 teklif: ${targetUrl}`);
-  }
+  const results = await scrapePageOnce(browser, targetUrl, checkIn);
   return results;
 }
 
@@ -283,24 +274,35 @@ async function main() {
     const urls = generateUrls();
     console.log(`Toplam URL: ${urls.length}`);
 
-    // Önce tüm teklifleri tarih bazında topla (5 paralel)
+    // Önce tüm teklifleri tarih bazında topla (10 paralel)
     const offersByDate = {};
+    const emptyUrls = [];
     let completed = 0;
     const CONCURRENCY = 10;
 
     for (let i = 0; i < urls.length; i += CONCURRENCY) {
       const batch = urls.slice(i, i + CONCURRENCY);
       const results = await Promise.all(
-        batch.map(({ url, checkIn }) => scrapePage(browser, url, checkIn).then(offers => ({ checkIn, offers })))
+        batch.map(({ url, checkIn }) => scrapePage(browser, url, checkIn).then(offers => ({ checkIn, url, offers })))
       );
-      for (const { checkIn, offers } of results) {
+      for (const { checkIn, url, offers } of results) {
         if (offers.length > 0) {
           if (!offersByDate[checkIn]) offersByDate[checkIn] = [];
           offersByDate[checkIn].push(...offers);
+        } else {
+          emptyUrls.push({ url, checkIn });
         }
       }
       completed += batch.length;
-      if (completed % 50 === 0 || completed === urls.length) console.log(`  ${completed}/${urls.length} tamamlandi`);
+      if (completed % 100 === 0 || completed === urls.length) console.log(`  ${completed}/${urls.length} tamamlandi`);
+    }
+
+    if (emptyUrls.length > 0) {
+      console.log(`\n--- BOŞ GELEN URL'LER (${emptyUrls.length} adet) ---`);
+      for (const { url, checkIn } of emptyUrls) {
+        console.log(`  [BOŞ] ${checkIn} - ${url}`);
+      }
+      console.log('---');
     }
 
     // Toplandıktan sonra tek seferde analiz et (tekrar eden key'ler analyzeOffers'da otomatik birleşir)
