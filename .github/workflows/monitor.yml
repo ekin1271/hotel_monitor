@@ -1,4 +1,4 @@
-name: Peninsula Fiyat Takip
+name: Monitor
 
 on:
   schedule:
