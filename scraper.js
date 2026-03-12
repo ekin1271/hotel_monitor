@@ -339,9 +339,7 @@ async function main() {
         if (offers.length > 0) {
           if (!offersByDate[usedCheckIn]) offersByDate[usedCheckIn] = [];
           offersByDate[usedCheckIn].push(...offers);
-          if (shifted) {
-            console.log(`  [TARİH KAYDI] ${originalCheckIn} boş → ${usedCheckIn} kullanıldı: ${usedUrl}`);
-          }
+
         } else {
           emptyUrls.push({ url: usedUrl, checkIn: usedCheckIn, originalCheckIn: shifted ? originalCheckIn : null });
         }
