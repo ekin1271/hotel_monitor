@@ -3276,7 +3276,7 @@
   "20.04.2026__Selenium Hotel 4*__FAMILY 2 ROOM CONNECTION HBзавтраки и ужины": "alone",
   "20.04.2026__Selenium Hotel 4*__STANDARD LARGE ROOM WITH BUNKBED AI AIвсе включено": "alone",
   "20.04.2026__Selenium Hotel 4*__FAMILY 2 ROOMS CONNECTION AI AIвсе включено": "alone",
-  "20.04.2026__Villa Sonata Hotel APARTMENT__STANDARD ROOM AOбез питания": "alone",
+  "20.04.2026__Villa Sonata Hotel APARTMENT__STANDARD ROOM AOбез питания": "behind",
   "20.04.2026__Villa Sonata Hotel APARTMENT__SUITE ROOM AOбез питания": "alone",
   "20.04.2026__Villa Sonata Hotel APARTMENT__STANDARD ROOM BBзавтраки": "alone",
   "20.04.2026__Villa Sonata Hotel APARTMENT__PANAROMIC SUITE AOбез питания": "alone",
@@ -3563,5 +3563,16 @@
   "20.05.2026__Citrus Park Hotel 3*__ECO GARDEN ROOM BBзавтраки": "ahead",
   "20.05.2026__Solivia Hotel (ex. Titan Select Hotel) 5*__STANDARD ROOM AI AIвсе включено": "alone",
   "20.05.2026__Papillon Ayscha Hotel 5*__STANDART ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Bilem Hotel Beach & Spa 4*__STANDARD ROOM LAND VIEW AOбез питания": "alone"
+  "20.07.2026__Bilem Hotel Beach & Spa 4*__STANDARD ROOM LAND VIEW AOбез питания": "alone",
+  "20.05.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
+  "20.05.2026__Lara Barut Collection 5*__DELUXE SIDE SEAVIEW ROOM ULTRA ALLвсе включено": "alone",
+  "20.06.2026__Cornelia Azure Villas 5*__AZURE VILLA 2 BEDROOMS ULTRA ALLвсе включено": "behind",
+  "20.07.2026__Lara Garden Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
+  "20.07.2026__Day One Beach Resort & Spa (only adults 18+) Boutique__DELUXE SEA VIEW ROOM BBзавтраки": "behind",
+  "20.07.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "behind",
+  "20.07.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "ahead",
+  "20.07.2026__Argos Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
+  "20.07.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
+  "20.07.2026__Lims Bonadea Beach Hotel 4*__STANDARD ROOM AIвсе включено": "ahead",
+  "20.07.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLвсе включено": "alone"
 }
