@@ -100,22 +100,22 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
     for (const a of g.entries) {
       if (a.type === 'equal') {
         block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşitleşti\n`;
-        block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
+        block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice} EUR\n`;
       } else if (a.newRival && !a.rivalAhead) {
         // Rakip ilk kez göründü, biz öndeyiz
         block += `  📅 ${a.checkIn} 🆕 Rakip girdi (biz öndeyiz)\n`;
-        block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
-        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB\n`;
+        block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
+        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR\n`;
       } else if (a.newRival && a.rivalAhead) {
         // Rakip ilk kez göründü, biz gerideyiz
         block += `  📅 ${a.checkIn} 🆕 Rakip girdi (gerideyiz)\n`;
-        block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
-        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB (Fark: ${a.diff.toLocaleString('tr-TR')} RUB)\n`;
+        block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
+        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR (Fark: ${a.diff} EUR)\n`;
       } else {
         // Önceden bilinen rakip öne geçti
         block += `  📅 ${a.checkIn} 🚨 Rakip öne geçti\n`;
-        block += `     📌 Peninsula: ${a.peninsulaPrice.toLocaleString('tr-TR')} RUB\n`;
-        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice.toLocaleString('tr-TR')} RUB (Fark: ${a.diff.toLocaleString('tr-TR')} RUB)\n`;
+        block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
+        block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR (Fark: ${a.diff} EUR)\n`;
       }
     }
     block += `─────────────────\n`;
@@ -184,13 +184,11 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
         if (!agency) continue;
 
         let price = null;
-        const bR = tr.querySelector('b.r');
-        if (bR) {
-          price = parseInt(bR.textContent.replace(/\D/g, ''), 10) || null;
-        }
-        if (!price) {
-          const pe = tr.querySelector('td.c_pe b');
-          if (pe) price = parseInt(pe.textContent.replace(/\D/g, ''), 10) || null;
+        // EUR fiyatı linkteki x= parametresinden alınır
+        const priceLink = tr.querySelector('td.c_pe a[href*="x="]');
+        if (priceLink) {
+          const m = (priceLink.getAttribute('href') || '').match(/[?&]x=(\d+)/);
+          if (m) price = parseInt(m[1], 10) || null;
         }
         if (!price) continue;
 
