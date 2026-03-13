@@ -188,7 +188,7 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
 
       const agency = identifyAgency(idMatch[1]);
       let priceRub = null;
-      const priceEl = tr.querySelector('td.c_pe b');
+      const priceEl = matchedLi.closest('tr')?.querySelector('td.c_pe b');
       if (priceEl) priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''), 10);
 
       let roomType = 'UNKNOWN';
