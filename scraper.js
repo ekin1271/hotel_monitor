@@ -192,13 +192,16 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
       if (priceEl) priceRub = parseInt(priceEl.textContent.replace(/\D/g, ''), 10);
 
       let roomType = 'UNKNOWN';
-      const roomEl = tr.querySelector('td.c_ns');
-      if (roomEl) roomType = roomEl.textContent.trim().split('\n')[0].trim();
+const roomEl = tr.querySelector('td.c_ns');
+if (roomEl) roomType = roomEl.textContent.trim().split('\n')[0].trim();
 
-      if (priceRub && currentHotel) offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
-    }
-    return offers;
-  }, agencyRulesStr, targetDate);
+if (priceRub && currentHotel) offers.push({ agency, hotelName: currentHotel, roomType, priceRub });
+}
+
+console.log('SCRAPED OFFERS:', offers);
+return offers;
+
+}, agencyRulesStr, targetDate);
 
   await page.close();
   return results;
