@@ -245,8 +245,8 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     if (offer.agency === 'PENINSULA') {
       if (!groups[key].peninsula || offer.priceRub < groups[key].peninsula)
         groups[key].peninsula = offer.priceRub;
-    } else if (offer.agency !== 'BILINMEYEN') {
-      groups[key].rivals.push({ agency: offer.agency, price: offer.priceRub });
+    } else {
+  groups[key].rivals.push({ agency: offer.agency, price: offer.priceRub });
     }
   }
 
