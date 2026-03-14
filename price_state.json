@@ -3325,7 +3325,7 @@
   "20.04.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__STANDARD ROOM HBзавтраки и ужины": "alone",
   "20.04.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__FOREST ROOM BBзавтраки": "alone",
   "20.04.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__FOREST ROOM HBзавтраки и ужины": "alone",
-  "20.04.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM WITHOUT BALCONY AIвсе включено": "behind",
+  "20.04.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM WITHOUT BALCONY AIвсе включено": "ahead",
   "20.04.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM AIвсе включено": "behind",
   "20.04.2026__Hawaii Suite Beach Hotel 3*__FAMILY SUITE ROOM AIвсе включено": "behind",
   "20.04.2026__Belmondo Suites Old Town 3*__CLASSIC DOUBLE ROOM AOбез питания": "alone",
@@ -3579,5 +3579,14 @@
   "20.04.2026__Massimo Hotel (ex. La Boutique Hotel) (only adults 16+) Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.06.2026__Belmondo Suites Old Town 3*__CLASSIC DOUBLE ROOM AOбез питания": "alone",
   "20.06.2026__Ruin Adalia Hotel Special Class (only adults 14+) -*__STANDARD ROOM BBзавтраки": "alone",
-  "20.06.2026__Kleopatra Balik 3*__SIDE SEAVIEW STANDARD ROOM AIвсе включено": "alone"
+  "20.06.2026__Kleopatra Balik 3*__SIDE SEAVIEW STANDARD ROOM AIвсе включено": "alone",
+  "20.04.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLвсе включено": "behind",
+  "20.05.2026__Sunmelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Kleopatra Bebek 3*__ECONOMY ROOM BBзавтраки": "ahead",
+  "20.07.2026__Der Inn Hotel Konyaalti Boutique__ECONOMY ROOM BB BBзавтраки": "behind",
+  "20.07.2026__Bayou Villas By Lara Barut Collection (Spc) -*__BAYOU VILLA 1 BEDROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Falcon 1511 Boutique Hotel Boutique__PROMO FRENCH BED BBзавтраки": "alone",
+  "20.07.2026__Club Golf Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
+  "20.07.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIвсе включено": "ahead",
+  "20.07.2026__Akka Hotels Alinda 5*__STANDARD SIDE BLOCK ROOM LANDVIEW PREMIUM AIвсе включено": "alone"
 }
