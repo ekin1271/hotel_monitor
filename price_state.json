@@ -2384,7 +2384,7 @@
   "15.07.2026__Sea Life Family Resort Hotel 5*__STANDARD LAND VIEW ROOM ULTRA ALLвсе включено": "alone",
   "15.07.2026__Sea Life Family Resort Hotel 5*__STANDARD SIDE SEA VIEW ULTRA ALLвсе включено": "alone",
   "15.07.2026__Sea Life Family Resort Hotel 5*__FAMILY ROOM ULTRA ALLвсе включено": "alone",
-  "15.07.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "ahead",
+  "15.07.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "behind",
   "15.07.2026__Alp Pasa Hotel -*__DELUXE ROOM BBзавтраки": "alone",
   "15.07.2026__Alp Pasa Hotel -*__FIORE DELUXE ROOM BBзавтраки": "alone",
   "15.07.2026__Alp Pasa Hotel -*__GAZETTA SUPEROIOR ROOM BBзавтраки": "alone",
@@ -3358,7 +3358,7 @@
   "20.04.2026__Cornelia Azure Villas 5*__AZURE VILLAS 3 BED ROOMS ULTRA ALLвсе включено": "alone",
   "20.04.2026__Yalihan Una 4*__ECONOMY ROOM AIвсе включено": "alone",
   "20.04.2026__Yalihan Una 4*__STANDARD ROOM AIвсе включено": "alone",
-  "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "alone",
+  "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "ahead",
   "20.06.2026__Best Western Plus Khan Hotel 4*__DELUXE SUITE BBзавтраки": "alone",
   "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM HBзавтраки и ужины": "alone",
   "20.06.2026__Best Western Plus Khan Hotel 4*__KING SUITE BBзавтраки": "alone",
@@ -3606,5 +3606,12 @@
   "15.07.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIвсе включено": "alone",
   "20.05.2026__Lims Bonadea Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "20.07.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__STANDARD ROOM BBзавтраки": "ahead",
-  "20.07.2026__Mielo Lara Hotel 3*__STANDARD ROOM BBзавтраки": "alone"
+  "20.07.2026__Mielo Lara Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
+  "20.06.2026__Sy Hotels Belek Boutique Luxury 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "alone",
+  "20.06.2026__Raxeria Hotel 5*__STANDARD ROOM SIDE SEA VIEW AIвсе включено": "alone",
+  "20.06.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIвсе включено": "behind",
+  "20.06.2026__Bilem Hotel Beach & Spa 4*__STANDARD ROOM LAND VIEW AOбез питания": "alone",
+  "15.07.2026__Gold Twins Hotel Boutique__FAMILY ROOM LAND VIEW AIвсе включено": "alone",
+  "20.07.2026__IC Hotels Santai Family Resort 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Kaya Palazzo Golf Resort 5*__SUPERIOR ROOM SEA VIEW PALAZZO SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone"
 }
