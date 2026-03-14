@@ -3161,7 +3161,7 @@
   "20.06.2026__Anjeliq Downtown 3*__STANDARD ROOM HB HBзавтраки и ужины": "ahead",
   "20.06.2026__Anjeliq Downtown 3*__LARGE ROOM HB HBзавтраки и ужины": "ahead",
   "20.06.2026__Anjeliq Downtown 3*__STANDARD ROOM SEA VIEW HB HBзавтраки и ужины": "ahead",
-  "20.06.2026__Anjeliq Downtown 3*__STANDARD ROOM BBзавтраки": "alone",
+  "20.06.2026__Anjeliq Downtown 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.06.2026__Anjeliq Downtown 3*__STANDARD KITCHEN ROOM BBзавтраки": "alone",
   "20.06.2026__Anjeliq Downtown 3*__LARGE ROOM BBзавтраки": "alone",
   "20.06.2026__Anjeliq Downtown 3*__STANDARD ROOM SEA VIEW BBзавтраки": "alone",
@@ -3222,7 +3222,7 @@
   "20.05.2026__IC Hotels Santai Family Resort 5*__KING SUITE ULTRA ALLвсе включено": "alone",
   "20.05.2026__IC Hotels Santai Family Resort 5*__SELECTION VILLA SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.05.2026__IC Hotels Santai Family Resort 5*__KING VILLAS ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Beach Club Doganay 5*__STANDARD ROOM ULTRA ALLвсе включено": "ahead",
+  "20.07.2026__Beach Club Doganay 5*__STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "20.07.2026__Beach Club Doganay 5*__SIDE SEAVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Beach Club Doganay 5*__FAMILY ROOM CONNECTION SIDE SEA VIEW ULTRA ALLвсе включено": "alone",
   "20.07.2026__Beach Club Doganay 5*__FAMILY ROOM SEA VIEW ULTRA ALLвсе включено": "ahead",
@@ -3590,7 +3590,7 @@
   "20.07.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIвсе включено": "ahead",
   "20.07.2026__Akka Hotels Alinda 5*__STANDARD SIDE BLOCK ROOM LANDVIEW PREMIUM AIвсе включено": "alone",
   "20.04.2026__Acanthus & Cennet Barut Collection 5*__SUPERIOR SIDE SEAVIEW & POOL VIEW ULTRA ALLвсе включено": "alone",
-  "20.04.2026__Yesiloz 4*__STANDARD ROOM AIвсе включено": "behind",
+  "20.04.2026__Yesiloz 4*__STANDARD ROOM AIвсе включено": "equal",
   "20.05.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone",
   "20.05.2026__Day One Beach Resort & Spa (only adults 18+) Boutique__DELUXE SEA VIEW ROOM BBзавтраки": "behind",
   "20.05.2026__Barut Hemera 5*__SUPERIOR ROOM WITH JACUZZI ON BALCONY ULTRA ALLвсе включено": "alone",
@@ -3625,5 +3625,10 @@
   "20.06.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBзавтраки": "alone",
   "20.07.2026__Dobedan Exclusive Hotel & Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
-  "20.07.2026__Infinity Beach Hotel 4*__STANDARD ROOM AIвсе включено": "alone"
+  "20.07.2026__Infinity Beach Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
+  "20.04.2026__Kaptan Hotel 4*__ECONOMY ROOM BBзавтраки": "behind",
+  "20.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "behind",
+  "20.06.2026__Barut Hemera 5*__DELUXE ROOM SIDE SEA VIEW ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Prenses Sealine Hotel 3*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "behind",
+  "20.07.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "behind"
 }
