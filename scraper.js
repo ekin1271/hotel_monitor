@@ -131,7 +131,7 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
 }
 
 // ─── SCRAPE ──────────────────────────────────────────────────────────────────
-async function scrapePageOnce(browser, targetUrl, checkIn) {
+async function scrapePageOnce(browser, targetUrl, checkIn, hotelId) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
@@ -142,7 +142,7 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
 
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
 
-  const results = await page.evaluate((agencyRulesStr, targetDate) => {
+  const results = await page.evaluate((agencyRulesStr, targetDate, expectedHotelId) => {
     const agencyRules = JSON.parse(agencyRulesStr);
 
     function identifyAgency(urr) {
@@ -160,6 +160,14 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
     const blocks = document.querySelectorAll('div.b-pr');
 
     for (const block of blocks) {
+      // data-hid kontrolü: yanlış otel bloğunu atla
+      if (expectedHotelId) {
+        const nameDiv = block.querySelector('div.name[data-hid]');
+        if (nameDiv) {
+          const dataHid = nameDiv.getAttribute('data-hid');
+          if (dataHid && dataHid !== expectedHotelId) continue;
+        }
+      }
       const allRows = block.querySelectorAll('tr');
       let peninsulaPrice = null;
       let peninsulaRoomName = '';
@@ -209,14 +217,14 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
     }
 
     return offers;
-  }, agencyRulesStr, checkIn);
+  }, agencyRulesStr, checkIn, hotelId);
 
   await page.close();
   return results;
 }
 
-async function scrapePageWithDateShift(browser, targetUrl, checkIn) {
-  let results = await scrapePageOnce(browser, targetUrl, checkIn);
+async function scrapePageWithDateShift(browser, targetUrl, checkIn, hotelId) {
+  let results = await scrapePageOnce(browser, targetUrl, checkIn, hotelId);
   if (results.length > 0) return { results, usedCheckIn: checkIn };
 
   const [d, m, y] = checkIn.split('.');
@@ -231,7 +239,7 @@ async function scrapePageWithDateShift(browser, targetUrl, checkIn) {
     .replace(/data=\d{2}\.\d{2}\.\d{4}/, `data=${newCheckIn}`)
     .replace(/d2=\d{2}\.\d{2}\.\d{4}/,   `d2=${newCheckOut}`);
 
-  results = await scrapePageOnce(browser, newUrl, newCheckIn);
+  results = await scrapePageOnce(browser, newUrl, newCheckIn, hotelId);
   return { results, usedCheckIn: newCheckIn };
 }
 
@@ -339,7 +347,7 @@ async function main() {
     for (let i = 0; i < urls.length; i += CONCURRENCY) {
       const batch = urls.slice(i, i + CONCURRENCY);
       const batchResults = await Promise.all(
-        batch.map(({ url, checkIn }) => scrapePageWithDateShift(browser, url, checkIn))
+        batch.map(({ url, checkIn, hotelId }) => scrapePageWithDateShift(browser, url, checkIn, hotelId))
       );
 
       for (const { results, usedCheckIn } of batchResults) {
