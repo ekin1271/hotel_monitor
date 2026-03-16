@@ -1195,7 +1195,7 @@
   "15.05.2026__Lara Barut Collection 5*__DELUXE FAMILY SUITE SWIM UP ULTRA ALLвсе включено": "alone",
   "15.05.2026__Lara Barut Collection 5*__PENTHOUSE SUITE MAINBUILDING SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "15.05.2026__Lara Barut Collection 5*__GRAND FAMILY PENTHOUSE SUITE SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
-  "15.05.2026__Concorde De Luxe Resort 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "ahead",
+  "15.05.2026__Concorde De Luxe Resort 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "behind",
   "15.05.2026__Concorde De Luxe Resort 5*__DELUXE SEA VIEW ROOM ULTRA ALLвсе включено": "alone",
   "15.05.2026__Concorde De Luxe Resort 5*__DELUXE JUNIOR SUITE ULTRA ALLвсе включено": "alone",
   "15.05.2026__Concorde De Luxe Resort 5*__DELUXE FAMILY SUITE OR DUBLEX ULTRA ALLвсе включено": "alone",
@@ -2817,7 +2817,7 @@
   "20.06.2026__Britannia Hotel & Villas 3*__STANDARD ROOM AIвсе включено": "alone",
   "20.06.2026__Neptun Hotel 3*__ECONOMY ROOM BBзавтраки": "alone",
   "20.06.2026__Neptun Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
-  "20.06.2026__Barhan Beach Hotel 3*__STANDARD ROOM AIвсе включено": "alone",
+  "20.06.2026__Barhan Beach Hotel 3*__STANDARD ROOM AIвсе включено": "ahead",
   "20.06.2026__Beldibi Beach Hotel  4*__STANDARD ROOM AIвсе включено": "alone",
   "20.06.2026__Beldibi Beach Hotel  4*__COMFORT STANDARD ROOM AIвсе включено": "alone",
   "20.06.2026__Selenium Hotel 4*__ECONOMY ROOM HBзавтраки и ужины": "behind",
@@ -3711,7 +3711,7 @@
   "20.07.2026__Club Marakesh Beach Hotel 4*__STANDARD ROOM LAND VIEW AIвсе включено": "ahead",
   "20.07.2026__Mediterra Art Hotel 4*__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "behind",
+  "20.07.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
   "20.07.2026__Massimo Hotel (ex. La Boutique Hotel) (only adults 16+) Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBзавтраки": "behind",
   "20.05.2026__More Hotel (non-alcohol) 3*__STANDARD ROOM AIвсе включено": "behind",
@@ -3759,5 +3759,6 @@
   "20.05.2026__Begonville Apart 3*__STUDIO 1 ROOM AOбез питания": "alone",
   "20.05.2026__Luna Blanca Resort & SPA 5*__STANDART SEA SIDE ULTRA ALLвсе включено": "alone",
   "20.05.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
-  "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone"
+  "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
+  "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIвсе включено": "ahead"
 }
