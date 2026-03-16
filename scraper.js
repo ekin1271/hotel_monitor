@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const TELEGRAM_GROUP_ID = process.env.GROUP_CHAT_ID;
 const STATE_FILE = 'price_state.json';
 const HOTELS_FILE = 'hotels.json';
 
@@ -63,13 +64,18 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 // ─── Telegram ────────────────────────────────────────────────────────────────
 async function sendTelegram(text) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) { console.log('[TEL]', text.slice(0, 120)); return; }
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'HTML', disable_web_page_preview: true }),
-  });
-  if (!resp.ok) console.error('Telegram hatasi:', resp.status, await resp.text());
+  const targets = [TELEGRAM_CHAT_ID];
+  if (TELEGRAM_GROUP_ID) targets.push(TELEGRAM_GROUP_ID);
+
+  for (const chatId of targets) {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML', disable_web_page_preview: true }),
+    });
+    if (!resp.ok) console.error('Telegram hatasi:', resp.status, await resp.text());
+  }
 }
 
 async function sendTelegramSplit(aheadAlerts, equalAlerts) {
@@ -99,7 +105,7 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
     let block = `🏨 <b>${g.hotel}</b>\n🛏 ${g.room}\n`;
     for (const a of g.entries) {
       if (a.type === 'equal') {
-        block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşitledi\n`;
+        block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşit\n`;
         block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice} EUR\n`;
       } else if (a.newRival && !a.rivalAhead) {
         // Rakip ilk kez göründü, biz öndeyiz
@@ -131,7 +137,7 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
 }
 
 // ─── SCRAPE ──────────────────────────────────────────────────────────────────
-async function scrapePageOnce(browser, targetUrl, checkIn, hotelId) {
+async function scrapePageOnce(browser, targetUrl, checkIn) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
   await page.setViewport({ width: 1920, height: 1080 });
@@ -142,7 +148,7 @@ async function scrapePageOnce(browser, targetUrl, checkIn, hotelId) {
 
   const agencyRulesStr = JSON.stringify(AGENCY_RULES);
 
-  const results = await page.evaluate((agencyRulesStr, targetDate, expectedHotelId) => {
+  const results = await page.evaluate((agencyRulesStr, targetDate) => {
     const agencyRules = JSON.parse(agencyRulesStr);
 
     function identifyAgency(urr) {
@@ -160,14 +166,6 @@ async function scrapePageOnce(browser, targetUrl, checkIn, hotelId) {
     const blocks = document.querySelectorAll('div.b-pr');
 
     for (const block of blocks) {
-      // data-hid kontrolü: yanlış otel bloğunu atla
-      if (expectedHotelId) {
-        const nameDiv = block.querySelector('div.name[data-hid]');
-        if (nameDiv) {
-          const dataHid = nameDiv.getAttribute('data-hid');
-          if (dataHid && dataHid !== expectedHotelId) continue;
-        }
-      }
       const allRows = block.querySelectorAll('tr');
       let peninsulaPrice = null;
       let peninsulaRoomName = '';
@@ -217,14 +215,14 @@ async function scrapePageOnce(browser, targetUrl, checkIn, hotelId) {
     }
 
     return offers;
-  }, agencyRulesStr, checkIn, hotelId);
+  }, agencyRulesStr, checkIn);
 
   await page.close();
   return results;
 }
 
-async function scrapePageWithDateShift(browser, targetUrl, checkIn, hotelId) {
-  let results = await scrapePageOnce(browser, targetUrl, checkIn, hotelId);
+async function scrapePageWithDateShift(browser, targetUrl, checkIn) {
+  let results = await scrapePageOnce(browser, targetUrl, checkIn);
   if (results.length > 0) return { results, usedCheckIn: checkIn };
 
   const [d, m, y] = checkIn.split('.');
@@ -239,7 +237,7 @@ async function scrapePageWithDateShift(browser, targetUrl, checkIn, hotelId) {
     .replace(/data=\d{2}\.\d{2}\.\d{4}/, `data=${newCheckIn}`)
     .replace(/d2=\d{2}\.\d{2}\.\d{4}/,   `d2=${newCheckOut}`);
 
-  results = await scrapePageOnce(browser, newUrl, newCheckIn, hotelId);
+  results = await scrapePageOnce(browser, newUrl, newCheckIn);
   return { results, usedCheckIn: newCheckIn };
 }
 
@@ -347,7 +345,7 @@ async function main() {
     for (let i = 0; i < urls.length; i += CONCURRENCY) {
       const batch = urls.slice(i, i + CONCURRENCY);
       const batchResults = await Promise.all(
-        batch.map(({ url, checkIn, hotelId }) => scrapePageWithDateShift(browser, url, checkIn, hotelId))
+        batch.map(({ url, checkIn }) => scrapePageWithDateShift(browser, url, checkIn))
       );
 
       for (const { results, usedCheckIn } of batchResults) {
