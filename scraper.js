@@ -99,7 +99,7 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
     let block = `🏨 <b>${g.hotel}</b>\n🛏 ${g.room}\n`;
     for (const a of g.entries) {
       if (a.type === 'equal') {
-        block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşitleşti\n`;
+        block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşitledi\n`;
         block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice} EUR\n`;
       } else if (a.newRival && !a.rivalAhead) {
         // Rakip ilk kez göründü, biz öndeyiz
