@@ -3731,7 +3731,7 @@
   "20.07.2026__Telatiye Resort 5*__ECONOMY ROOM AIвсе включено": "alone",
   "20.07.2026__Robinson Club Camyuva (only adults 18+) 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
   "20.05.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBзавтраки": "behind",
-  "20.07.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "ahead",
+  "20.07.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "20.07.2026__Double Tree By Hilton Antalya City Centre 5*__GUEST ROOM BB BBзавтраки": "alone",
   "20.07.2026__Anita Kemer Noch (only adults 12+) 4*__ECONOMY ROOM AIвсе включено": "ahead",
   "20.07.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLвсе включено": "alone",
@@ -3763,5 +3763,7 @@
   "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIвсе включено": "ahead",
   "20.05.2026__Cornelia Azure Villas 5*__AZURE VILLA 2 BEDROOMS ULTRA ALLвсе включено": "behind",
   "20.06.2026__Acanthus & Cennet Barut Collection 5*__SUPERIOR SIDE SEAVIEW & POOL VIEW ULTRA ALLвсе включено": "alone",
-  "20.05.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLвсе включено": "behind"
+  "20.05.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLвсе включено": "behind",
+  "20.05.2026__Ruin Adalia Hotel Special Class (only adults 14+) -*__STANDARD ROOM BBзавтраки": "alone",
+  "20.07.2026__Savk Hotel 4*__SIDE SEAVIEW STANDARD ROOM HBзавтраки и ужины": "alone"
 }
