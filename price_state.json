@@ -3615,7 +3615,7 @@
   "20.07.2026__IC Hotels Santai Family Resort 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "20.07.2026__Kaya Palazzo Golf Resort 5*__SUPERIOR ROOM SEA VIEW PALAZZO SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.04.2026__Elysium Elite Hotel & Spa 4*__LANDVIEW STANDARD ROOM AIвсе включено": "alone",
-  "20.07.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "equal",
+  "20.07.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "behind",
   "20.07.2026__Akka Residence Villas 5*__VILLA RUBY AIвсе включено": "alone",
   "20.07.2026__Park Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
   "20.04.2026__Der Inn Hotel Lara Boutique__STANDARD ROOM BB BBзавтраки": "behind",
@@ -3812,5 +3812,8 @@
   "20.07.2026__Neptun Hotel 3*__ECONOMY ROOM BBзавтраки": "alone",
   "20.05.2026__Anjeliq Downtown 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.06.2026__Holiday Inn Antalya Lara 5*__STANDARD ROOM LAND VIEW BBзавтраки": "ahead",
-  "20.07.2026__Trendy Perge Resort & Suites 5*__DELUXE ROOM GARDEN VIEW ULTRA ALLвсе включено": "ahead"
+  "20.07.2026__Trendy Perge Resort & Suites 5*__DELUXE ROOM GARDEN VIEW ULTRA ALLвсе включено": "ahead",
+  "20.05.2026__Anita Kemer Noch (only adults 12+) 4*__ECONOMY ROOM AIвсе включено": "ahead",
+  "20.06.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
+  "20.07.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "ahead"
 }
