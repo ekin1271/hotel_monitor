@@ -3235,7 +3235,7 @@
   "20.04.2026__Aroma Hotel Boutique__RELAX JACUZZI ROOM(BUNGALOW) FBзавтраки, обеды и ужины": "alone",
   "20.04.2026__Aroma Hotel Boutique__FAMILY ROOM HBзавтраки и ужины": "alone",
   "20.04.2026__Aroma Hotel Boutique__FAMILY ROOM FBзавтраки, обеды и ужины": "alone",
-  "20.04.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "behind",
+  "20.04.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.04.2026__Kleopatra Bavyera 3*__ECO ROOM WITHOUT AIR CONDITION BBзавтраки": "ahead",
   "20.04.2026__Kleopatra Bavyera 3*__STANDARD ROOM WITHOUT AIR CONDITIONER BBзавтраки": "alone",
   "20.04.2026__Kleopatra Bavyera 3*__ECO ROOM WITHOUT AIR CONDITION HBзавтраки и ужины": "alone",
@@ -3672,7 +3672,7 @@
   "20.07.2026__Sea Life Family Resort Hotel 5*__ECONOMY ROOM WITHOUT BALCONY ULTRA ALLвсе включено": "alone",
   "20.04.2026__Beach Club Doganay 5*__STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "20.05.2026__La Muer City Hotel (ex. Muer City Hotel) 4*__STANDARD ROOM WITHOUT BALCONY AIвсе включено": "alone",
-  "20.06.2026__Concorde De Luxe Resort 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "behind",
+  "20.06.2026__Concorde De Luxe Resort 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "ahead",
   "20.04.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
   "20.05.2026__Falcon 1511 Boutique Hotel Boutique__PROMO FRENCH BED BBзавтраки": "alone",
   "20.05.2026__Robinson Club Nobilis 5*__DOUBLE ROOM CLASSIC MAIN BUILDING AIвсе включено": "alone",
@@ -3803,5 +3803,7 @@
   "20.06.2026__Mediterra Art Hotel 4*__STANDARD ROOM BBзавтраки": "alone",
   "20.06.2026__Lara Barut Collection 5*__DELUXE LAGOON ULTRA ALLвсе включено": "alone",
   "20.07.2026__Papillon Ayscha Hotel 5*__STANDART ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
-  "20.06.2026__Selene Beach & SPA 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone"
+  "20.06.2026__Selene Beach & SPA 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
+  "20.06.2026__Campus Hill Hotel 5*__STANDART ROOM AIвсе включено": "behind",
+  "20.06.2026__Anita Kemer Noch (only adults 12+) 4*__ECONOMY ROOM AIвсе включено": "ahead"
 }
