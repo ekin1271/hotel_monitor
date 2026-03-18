@@ -2724,7 +2724,7 @@
   "20.04.2026__Kleopatra Micador Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "20.05.2026__Mediterra Art Hotel 4*__STANDARD ROOM BBзавтраки": "alone",
   "20.05.2026__Mediterra Art Hotel 4*__DELUXE ROOM BBзавтраки": "alone",
-  "20.05.2026__Concorde De Luxe Resort 5*__DELUXE SEA VIEW ROOM ULTRA ALLвсе включено": "alone",
+  "20.05.2026__Concorde De Luxe Resort 5*__DELUXE SEA VIEW ROOM ULTRA ALLвсе включено": "ahead",
   "20.07.2026__Lara Barut Collection 5*__DELUXE LAGOON ULTRA ALLвсе включено": "alone",
   "20.07.2026__Lara Barut Collection 5*__DELUXE GARDEN VIEW ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Lara Barut Collection 5*__DELUXE SIDE SEAVIEW ROOM ULTRA ALLвсе включено": "alone",
@@ -3601,7 +3601,7 @@
   "20.04.2026__Bayou Villas By Lara Barut Collection (Spc) -*__BAYOU VILLA 2 BEDROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "15.04.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBзавтраки": "alone",
   "15.05.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBзавтраки": "alone",
-  "20.05.2026__Akka Hotels Claros 4*__STANDART ROOM AIвсе включено": "ahead",
+  "20.05.2026__Akka Hotels Claros 4*__STANDART ROOM AIвсе включено": "behind",
   "15.06.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIвсе включено": "alone",
   "15.07.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIвсе включено": "alone",
   "20.05.2026__Lims Bonadea Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
@@ -3822,5 +3822,6 @@
   "20.05.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIвсе включено": "behind",
   "20.05.2026__Floria Beach Hotel 4*__SIDE SEAVIEW STANDARD ROOM AIвсе включено": "behind",
   "20.06.2026__Trendy Perge Resort & Suites 5*__DELUXE ROOM GARDEN VIEW ULTRA ALLвсе включено": "ahead",
-  "20.07.2026__Trendy Palm Beach (only adults 16+) 5*__ANEX STANDART ROOM LANDVIEW AIвсе включено": "behind"
+  "20.07.2026__Trendy Palm Beach (only adults 16+) 5*__ANEX STANDART ROOM LANDVIEW AIвсе включено": "behind",
+  "20.04.2026__Akka Hotels Alinda 5*__STANDARD SIDE BLOCK ROOM LANDVIEW PREMIUM AIвсе включено": "alone"
 }
