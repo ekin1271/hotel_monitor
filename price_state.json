@@ -2709,7 +2709,7 @@
   "20.04.2026__Solivia Hotel (ex. Titan Select Hotel) 5*__STANDARD ROOM AI AIвсе включено": "alone",
   "20.04.2026__Solivia Hotel (ex. Titan Select Hotel) 5*__LARGE ROOM AI AIвсе включено": "alone",
   "20.04.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLвсе включено": "alone",
-  "20.04.2026__Lims Bonadea Beach Hotel 4*__STANDARD ROOM AIвсе включено": "equal",
+  "20.04.2026__Lims Bonadea Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "20.04.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIвсе включено": "behind",
   "20.04.2026__Cenger Beach Resort 5*__STANDARD ROOM AIвсе включено": "behind",
   "20.04.2026__Cenger Beach Resort 5*__FAMILY ROOM WITH BUNKBED AIвсе включено": "behind",
@@ -3787,7 +3787,7 @@
   "20.07.2026__Limak Arcadia Sport Resort Hotel 5*__STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Side Temple Hotel 3*__STANDARD ROOM AIвсе включено": "alone",
   "20.07.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "behind",
-  "20.05.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "behind",
+  "20.05.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "ahead",
   "20.05.2026__Hedef Beach Resort Hotel and SPA 5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "ahead",
   "20.05.2026__Esma Clove Resort 4*__STANDARD ROOM AIвсе включено": "alone",
   "20.07.2026__De Mare Family Hotel 3*__ECONOMY ROOM AIвсе включено": "alone",
@@ -3840,5 +3840,7 @@
   "20.06.2026__Lara Garden Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.05.2026__Selene Beach & SPA 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "20.05.2026__Perre Delta Resort Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "behind",
-  "20.04.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBзавтраки": "alone"
+  "20.04.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBзавтраки": "alone",
+  "20.04.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone"
 }
