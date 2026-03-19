@@ -3569,7 +3569,7 @@
   "20.06.2026__Cornelia Azure Villas 5*__AZURE VILLA 2 BEDROOMS ULTRA ALLвсе включено": "behind",
   "20.07.2026__Lara Garden Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.07.2026__Day One Beach Resort & Spa (only adults 18+) Boutique__DELUXE SEA VIEW ROOM BBзавтраки": "behind",
-  "20.07.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "equal",
+  "20.07.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.07.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "ahead",
   "20.07.2026__Argos Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
@@ -3721,7 +3721,7 @@
   "20.04.2026__Seamelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "20.04.2026__Side Temple Hotel 3*__STANDARD ROOM AIвсе включено": "alone",
   "20.06.2026__Esma Clove Resort 4*__STANDARD ROOM AIвсе включено": "alone",
-  "20.04.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "behind",
+  "20.04.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "ahead",
   "20.05.2026__Emily Rose Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "20.05.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "behind",
   "20.05.2026__Sural Resort Hotel 5*__SIDE SEAVIEW STANDARD ROOM AIвсе включено": "alone",
@@ -3857,5 +3857,7 @@
   "20.07.2026__Aroma Hotel Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.05.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIвсе включено": "behind",
   "20.06.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Ducale Lara 5*__STANDART DELUXE SIDE SEA AND POOL VIEW ULTRA ALLвсе включено": "alone"
+  "20.07.2026__Ducale Lara 5*__STANDART DELUXE SIDE SEA AND POOL VIEW ULTRA ALLвсе включено": "alone",
+  "20.04.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Arum Barut Collection 5*__SUPERIOR SEASIDE VIEW ROOM ULTRA ALLвсе включено": "alone"
 }
