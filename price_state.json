@@ -49,7 +49,7 @@
   "15.04.2026__Villa Sonata Hotel APARTMENT__PANAROMIC SUITE AIвсе включено": "ahead",
   "15.04.2026__Trendy Palm Beach (only adults 16+) 5*__STANDARD ROOM SIDE SEA VIEW AIвсе включено": "behind",
   "15.04.2026__Anjelique House Boutique__STANDARD ROOM BBзавтраки": "behind",
-  "15.04.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "behind",
+  "15.04.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
   "15.04.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM WITHOUT BALCONY AIвсе включено": "behind",
   "15.04.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM AIвсе включено": "behind",
   "15.04.2026__Hawaii Suite Beach Hotel 3*__FAMILY SUITE ROOM AIвсе включено": "behind",
@@ -103,7 +103,7 @@
   "15.05.2026__Club Aperion Beach Hotel Side 3*__GARDEN BUNKBED ROOM AIвсе включено": "behind",
   "15.05.2026__Club Aperion Beach Hotel Side 3*__FAMILY ROOM AIвсе включено": "behind",
   "15.05.2026__Anjelique House Boutique__STANDARD ROOM BBзавтраки": "behind",
-  "15.05.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "behind",
+  "15.05.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
   "15.05.2026__Perre Delta Resort Spa 5*__FAMILY ROOM ULTRA ALLвсе включено": "behind",
   "15.05.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM WITHOUT BALCONY AIвсе включено": "behind",
   "15.05.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM AIвсе включено": "behind",
@@ -3627,7 +3627,7 @@
   "20.07.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
   "20.07.2026__Infinity Beach Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
   "20.04.2026__Kaptan Hotel 4*__ECONOMY ROOM BBзавтраки": "behind",
-  "20.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "behind",
+  "20.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "ahead",
   "20.06.2026__Barut Hemera 5*__DELUXE ROOM SIDE SEA VIEW ULTRA ALLвсе включено": "alone",
   "20.07.2026__Prenses Sealine Hotel 3*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "behind",
   "20.07.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "behind",
@@ -3780,7 +3780,7 @@
   "20.04.2026__IC Hotels Residence 5*__LAKE VILLA ULTRA ALLвсе включено": "alone",
   "20.05.2026__Papillon Zeugma Hotel 5*__SUPERIOR LANDVIEW ROOM HIGH CLASS SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.05.2026__Dobedan Exclusive Hotel & Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "20.05.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "behind",
+  "20.05.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "ahead",
   "20.05.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLвсе включено": "alone",
   "20.06.2026__En Vie Beach Hotel (only adults 16+) Boutique__STANDARD ROOM SUN BUILDING BBзавтраки": "alone",
   "20.06.2026__Renex Hotel 5*__STANDARD ROOM CITY VIEW BBзавтраки": "behind",
@@ -3874,5 +3874,6 @@
   "20.07.2026__Titanic Deluxe Golf Belek 5*__STANDARD ROOM DELUXE AI AIвсе включено": "behind",
   "20.04.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBзавтраки": "alone",
   "15.07.2026__Titanic Deluxe Golf Belek 5*__STANDARD ROOM DELUXE AI AIвсе включено": "behind",
-  "20.07.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIвсе включено": "alone"
+  "20.07.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIвсе включено": "alone",
+  "20.06.2026__Club Golf Hotel 4*__STANDARD ROOM AIвсе включено": "alone"
 }
