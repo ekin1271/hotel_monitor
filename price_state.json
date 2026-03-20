@@ -3630,7 +3630,7 @@
   "20.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "ahead",
   "20.06.2026__Barut Hemera 5*__DELUXE ROOM SIDE SEA VIEW ULTRA ALLвсе включено": "alone",
   "20.07.2026__Prenses Sealine Hotel 3*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "behind",
-  "20.07.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "behind",
+  "20.07.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
   "20.04.2026__Wasa Hotel 3*__ECONOMY ROOM AIвсе включено": "alone",
   "20.06.2026__Solivia Hotel (ex. Titan Select Hotel) 5*__STANDARD ROOM AI AIвсе включено": "alone",
   "20.06.2026__Seamelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
@@ -3711,7 +3711,7 @@
   "20.07.2026__Club Marakesh Beach Hotel 4*__STANDARD ROOM LAND VIEW AIвсе включено": "ahead",
   "20.07.2026__Mediterra Art Hotel 4*__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "behind",
+  "20.07.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
   "20.07.2026__Massimo Hotel (ex. La Boutique Hotel) (only adults 16+) Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBзавтраки": "behind",
   "20.05.2026__More Hotel (non-alcohol) 3*__STANDARD ROOM AIвсе включено": "behind",
@@ -3878,5 +3878,7 @@
   "20.06.2026__Club Golf Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
   "20.04.2026__Akka Hotels Claros 4*__STANDART ROOM AIвсе включено": "ahead",
   "20.06.2026__Akka Residence Villas 5*__VILLA RUBY AIвсе включено": "alone",
-  "20.07.2026__Begonville Apart 3*__STUDIO 1 ROOM AOбез питания": "alone"
+  "20.07.2026__Begonville Apart 3*__STUDIO 1 ROOM AOбез питания": "alone",
+  "20.05.2026__Titanic Deluxe Golf Belek 5*__BALI HOUSE TYPE DELUXE AI AIвсе включено": "behind",
+  "20.05.2026__Olimpos Beach Hotel by RRH&R 3*__STANDARD ROOM AIвсе включено": "alone"
 }
