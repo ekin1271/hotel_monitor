@@ -1593,7 +1593,7 @@
   "15.06.2026__Alexius Beach Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
   "15.06.2026__Alexius Beach Hotel 4*__FAMILY ROOM AIвсе включено": "alone",
   "15.06.2026__Ares Dream Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
-  "15.06.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "ahead",
+  "15.06.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "behind",
   "15.06.2026__Erkal Resort Hotel 4*__STANDARD ROOM AIвсе включено": "alone",
   "15.06.2026__Erkal Resort Hotel 4*__FAMILY ROOM AIвсе включено": "alone",
   "15.06.2026__Himeros Beach Hotel 3*__STANDARD ROOM AIвсе включено": "alone",
@@ -1882,7 +1882,7 @@
   "15.06.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
   "15.06.2026__Perre La Mer Hotel 5*__LAND SIDE STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "15.06.2026__Perre La Mer Hotel 5*__STANDARD SEA SIDE ULTRA ALLвсе включено": "alone",
-  "15.06.2026__Hedef Beach Resort Hotel and SPA 5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "ahead",
+  "15.06.2026__Hedef Beach Resort Hotel and SPA 5*__STANDARD ROOM NON ALCOHOL Soft AIвсе включено": "behind",
   "15.06.2026__Esma Clove Resort 4*__STANDARD ROOM AIвсе включено": "alone",
   "15.06.2026__Esma Clove Resort 4*__LARGE ROOM AIвсе включено": "alone",
   "15.06.2026__Esma Clove Resort 4*__FAMILY SUITE AIвсе включено": "alone",
@@ -3637,7 +3637,7 @@
   "15.05.2026__Ducale Lara 5*__STANDART DELUXE ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "20.06.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIвсе включено": "behind",
   "20.07.2026__Heritage By Cimen 3*__SEAVIEW STANDARD ROOM BBзавтраки": "alone",
-  "20.07.2026__Campus Hill Hotel 5*__STANDART ROOM AIвсе включено": "behind",
+  "20.07.2026__Campus Hill Hotel 5*__STANDART ROOM AIвсе включено": "ahead",
   "20.07.2026__Der Inn Hotel Lara Boutique__STANDARD ROOM BB BBзавтраки": "behind",
   "20.07.2026__Bijal 5*__VILLA 1 BEDROOM BBзавтраки": "alone",
   "20.07.2026__Renex Hotel 5*__STANDARD ROOM CITY VIEW BBзавтраки": "behind",
@@ -3880,5 +3880,7 @@
   "20.06.2026__Akka Residence Villas 5*__VILLA RUBY AIвсе включено": "alone",
   "20.07.2026__Begonville Apart 3*__STUDIO 1 ROOM AOбез питания": "alone",
   "20.05.2026__Titanic Deluxe Golf Belek 5*__BALI HOUSE TYPE DELUXE AI AIвсе включено": "behind",
-  "20.05.2026__Olimpos Beach Hotel by RRH&R 3*__STANDARD ROOM AIвсе включено": "alone"
+  "20.05.2026__Olimpos Beach Hotel by RRH&R 3*__STANDARD ROOM AIвсе включено": "alone",
+  "20.05.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "ahead",
+  "20.05.2026__Double Tree By Hilton Antalya City Centre 5*__GUEST ROOM BB BBзавтраки": "alone"
 }
