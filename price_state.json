@@ -3687,7 +3687,7 @@
   "20.07.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIвсе включено": "ahead",
   "20.07.2026__Kleopatra Dreams Beach 4*__COUPLE ROOM LAND VIEW AIвсе включено": "alone",
   "20.07.2026__Seaden Quality Resort & SPA 5*__STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "20.04.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "behind",
+  "20.04.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "equal",
   "20.04.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone",
   "20.04.2026__Buyuk Hotel 4*__STANDARD ROOM BBзавтраки": "behind",
   "20.04.2026__Day One Beach Resort & Spa (only adults 18+) Boutique__DELUXE SEA VIEW ROOM BBзавтраки": "behind",
@@ -3894,5 +3894,7 @@
   "20.07.2026__Solivia Hotel (ex. Titan Select Hotel) 5*__STANDARD ROOM AI AIвсе включено": "alone",
   "20.07.2026__Perre La Mer Hotel 5*__LAND SIDE STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "20.05.2026__Limak Arcadia Sport Resort Hotel 5*__STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "20.06.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "behind"
+  "20.06.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "behind",
+  "20.04.2026__Citrus Park Hotel 3*__ECO GARDEN ROOM BBзавтраки": "behind",
+  "20.06.2026__Pearly Hotel Special Class -*__STANDARD ROOM BBзавтраки": "alone"
 }
