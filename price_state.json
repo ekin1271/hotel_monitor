@@ -3582,7 +3582,7 @@
   "20.06.2026__Kleopatra Balik 3*__SIDE SEAVIEW STANDARD ROOM AIвсе включено": "alone",
   "20.04.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "20.05.2026__Sunmelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
-  "20.07.2026__Kleopatra Bebek 3*__ECONOMY ROOM BBзавтраки": "behind",
+  "20.07.2026__Kleopatra Bebek 3*__ECONOMY ROOM BBзавтраки": "ahead",
   "20.07.2026__Der Inn Hotel Konyaalti Boutique__ECONOMY ROOM BB BBзавтраки": "behind",
   "20.07.2026__Bayou Villas By Lara Barut Collection (Spc) -*__BAYOU VILLA 1 BEDROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.07.2026__Falcon 1511 Boutique Hotel Boutique__PROMO FRENCH BED BBзавтраки": "alone",
@@ -3731,7 +3731,7 @@
   "20.07.2026__Telatiye Resort 5*__ECONOMY ROOM AIвсе включено": "alone",
   "20.07.2026__Robinson Club Camyuva (only adults 18+) 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
   "20.05.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBзавтраки": "behind",
-  "20.07.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
+  "20.07.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "ahead",
   "20.07.2026__Double Tree By Hilton Antalya City Centre 5*__GUEST ROOM BB BBзавтраки": "alone",
   "20.07.2026__Anita Kemer Noch (only adults 12+) 4*__ECONOMY ROOM AIвсе включено": "ahead",
   "20.07.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLвсе включено": "alone",
@@ -3758,7 +3758,7 @@
   "20.05.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLвсе включено": "alone",
   "20.05.2026__Begonville Apart 3*__STUDIO 1 ROOM AOбез питания": "alone",
   "20.05.2026__Luna Blanca Resort & SPA 5*__STANDART SEA SIDE ULTRA ALLвсе включено": "alone",
-  "20.05.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
+  "20.05.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "behind",
   "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
   "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIвсе включено": "ahead",
   "20.05.2026__Cornelia Azure Villas 5*__AZURE VILLA 2 BEDROOMS ULTRA ALLвсе включено": "behind",
@@ -3903,5 +3903,6 @@
   "15.04.2026__Titanic Deluxe Lara 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "15.05.2026__Titanic Deluxe Lara 5*__SIDE SEAVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "15.06.2026__Titanic Deluxe Lara 5*__SIDE SEAVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "15.07.2026__Titanic Deluxe Lara 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone"
+  "15.07.2026__Titanic Deluxe Lara 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
+  "20.07.2026__Perre Delta Resort Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "behind"
 }
