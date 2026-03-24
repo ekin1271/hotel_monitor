@@ -211,7 +211,7 @@
   "15.06.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIвсе включено": "behind",
   "15.06.2026__Kleopatra Fatih 4*__STANDARD ROOM AIвсе включено": "equal",
   "15.06.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "ahead",
-  "15.06.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "behind",
+  "15.06.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
   "15.06.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM SIDE SEA VIEW ULTRA ALLвсе включено": "behind",
   "15.06.2026__Royal Alhambra Palace Hotel 5*__JUNIOR SUITE ULTRA ALLвсе включено": "behind",
   "15.06.2026__Royal Alhambra Palace Hotel 5*__KING SUITE ULTRA ALLвсе включено": "behind",
@@ -3906,5 +3906,6 @@
   "15.07.2026__Titanic Deluxe Lara 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Perre Delta Resort Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "20.04.2026__Titanic Deluxe Golf Belek 5*__SUPERIOR ROOM DELUXE AI AIвсе включено": "behind",
-  "20.04.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "ahead"
+  "20.04.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "ahead",
+  "15.05.2026__Ducale Lara 5*__STANDART DELUXE TERRACE GARDEN VIEW ULTRA ALLвсе включено": "alone"
 }
