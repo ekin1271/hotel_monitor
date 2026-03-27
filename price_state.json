@@ -3663,7 +3663,7 @@
   "20.07.2026__Sey Beach Hotel & Spa 4*__STANDARD ECO ROOM AIвсе включено": "alone",
   "20.05.2026__Mary Hotels Alanya 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.05.2026__Robinson Club Camyuva (only adults 18+) 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
-  "20.06.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "behind",
+  "20.06.2026__Incekum West Resort 4*__STANDART  ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
   "20.06.2026__Luna Blanca Resort & SPA 5*__LAND SIDE STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Citrus Park Hotel 3*__ECO GARDEN ROOM BBзавтраки": "ahead",
   "20.07.2026__Sunberk Hotel 3*__STANDARD ROOM AIвсе включено": "alone",
@@ -3760,7 +3760,7 @@
   "20.05.2026__Luna Blanca Resort & SPA 5*__STANDART SEA SIDE ULTRA ALLвсе включено": "alone",
   "20.05.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "behind",
   "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
-  "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIвсе включено": "ahead",
+  "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIвсе включено": "behind",
   "20.05.2026__Cornelia Azure Villas 5*__AZURE VILLA 2 BEDROOMS ULTRA ALLвсе включено": "behind",
   "20.06.2026__Acanthus & Cennet Barut Collection 5*__SUPERIOR SIDE SEAVIEW & POOL VIEW ULTRA ALLвсе включено": "alone",
   "20.05.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLвсе включено": "behind",
@@ -4186,5 +4186,6 @@
   "06.04.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.06.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "behind",
   "06.04.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "behind",
-  "06.04.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLвсе включено": "alone"
+  "06.04.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLвсе включено": "alone",
+  "06.04.2026__Side Temple Hotel 3*__STANDARD ROOM AIвсе включено": "alone"
 }
