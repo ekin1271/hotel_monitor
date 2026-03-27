@@ -3845,7 +3845,7 @@
   "20.07.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone",
   "20.04.2026__Dobedan Beach Resort Comfort 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "20.05.2026__Savk Hotel 4*__SIDE SEAVIEW STANDARD ROOM HBзавтраки и ужины": "alone",
-  "20.05.2026__Villa Sonata Hotel APARTMENT__STANDART ROOM BB BBзавтраки": "ahead",
+  "20.05.2026__Villa Sonata Hotel APARTMENT__STANDART ROOM BB BBзавтраки": "behind",
   "20.07.2026__Selenium Hotel 4*__ECONOMY ROOM HBзавтраки и ужины": "behind",
   "20.07.2026__Gurtas 3*__STANDARD ROOM BBзавтраки": "alone",
   "20.06.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
@@ -4184,5 +4184,7 @@
   "06.04.2026__Dobedan Exclusive Hotel & Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "06.04.2026__Lara Barut Collection 5*__DELUXE ROOM SIDE SEA VIEW & POOL VIEW ULTRA ALLвсе включено": "alone",
   "06.04.2026__Mardan Palace 5*__CLASSIC ROOM SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
-  "20.06.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "behind"
+  "20.06.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIвсе включено": "behind",
+  "06.04.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "behind",
+  "06.04.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLвсе включено": "alone"
 }
