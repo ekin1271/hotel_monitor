@@ -3536,7 +3536,7 @@
   "20.05.2026__Lara Garden Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.05.2026__Bijal 5*__VILLA 1 BEDROOM BBзавтраки": "alone",
   "20.06.2026__Savk Hotel 4*__SIDE SEAVIEW STANDARD ROOM HBзавтраки и ужины": "alone",
-  "20.06.2026__Villa Sonata Hotel APARTMENT__STANDART ROOM BB BBзавтраки": "behind",
+  "20.06.2026__Villa Sonata Hotel APARTMENT__STANDART ROOM BB BBзавтраки": "ahead",
   "20.07.2026__Papillon Zeugma Hotel 5*__SUPERIOR LANDVIEW ROOM HIGH CLASS SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.04.2026__Anjeliq Downtown 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.06.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "ahead",
@@ -4310,5 +4310,7 @@
   "07.04.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
   "07.04.2026__Commodore Elite Suites Spa (only adults 18+) 5*__ELITE SIDE SEA VIEW ROOM ULTRA ALLвсе включено": "alone",
   "07.04.2026__Citrus Park Hotel 3*__STANDARD ROOM BBзавтраки": "behind",
-  "07.04.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone"
+  "07.04.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
+  "07.04.2026__Ruin Adalia Hotel Special Class (only adults 14+) -*__STANDARD ROOM BBзавтраки": "alone",
+  "20.06.2026__Heritage By Cimen 3*__SEAVIEW STANDARD ROOM BBзавтраки": "alone"
 }
