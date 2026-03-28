@@ -3780,7 +3780,7 @@
   "20.04.2026__IC Hotels Residence 5*__LAKE VILLA ULTRA ALLвсе включено": "alone",
   "20.05.2026__Papillon Zeugma Hotel 5*__SUPERIOR LANDVIEW ROOM HIGH CLASS SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
   "20.05.2026__Dobedan Exclusive Hotel & Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "20.05.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "ahead",
+  "20.05.2026__Sural Garden Hotel 3*__STANDARD ROOM AIвсе включено": "behind",
   "20.05.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLвсе включено": "alone",
   "20.06.2026__En Vie Beach Hotel (only adults 16+) Boutique__STANDARD ROOM SUN BUILDING BBзавтраки": "alone",
   "20.06.2026__Renex Hotel 5*__STANDARD ROOM CITY VIEW BBзавтраки": "behind",
@@ -4302,5 +4302,6 @@
   "07.04.2026__Papillon Ayscha Hotel 5*__STANDART ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "02.04.2026__Barut Hemera 5*__DELUXE ROOM WITH JACUZZI ON BALCONY ULTRA ALLвсе включено": "alone",
   "07.04.2026__Double Tree By Hilton Antalya City Centre 5*__GUEST ROOM BB BBзавтраки": "alone",
-  "07.04.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBзавтраки": "alone"
+  "07.04.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBзавтраки": "alone",
+  "07.04.2026__Akka Residence Villas 5*__VILLA RUBY AIвсе включено": "alone"
 }
