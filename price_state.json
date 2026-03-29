@@ -3554,7 +3554,7 @@
   "20.05.2026__Massimo Hotel (ex. La Boutique Hotel) (only adults 16+) Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIвсе включено": "ahead",
   "20.07.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "ahead",
-  "20.07.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "ahead",
+  "20.07.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "equal",
   "20.04.2026__Double Tree By Hilton Antalya City Centre 5*__GUEST ROOM BB BBзавтраки": "alone",
   "20.04.2026__Yalihan Aspendos 3*__STANDARD  ROOM AI AIвсе включено": "alone",
   "20.04.2026__Mary Hotels Alanya 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
@@ -4418,5 +4418,8 @@
   "08.04.2026__Wasa Hotel 3*__ECONOMY ROOM AIвсе включено": "alone",
   "08.04.2026__Aspen Hotel Boutique__ECONOMY ROOM BBзавтраки": "alone",
   "08.04.2026__Kaptan Hotel 4*__ECONOMY ROOM BBзавтраки": "behind",
-  "20.05.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIвсе включено": "behind"
+  "20.05.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIвсе включено": "behind",
+  "08.04.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
+  "08.04.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLвсе включено": "alone",
+  "08.04.2026__Dobedan Beach Resort Comfort 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone"
 }
