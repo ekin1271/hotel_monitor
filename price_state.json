@@ -3358,7 +3358,7 @@
   "20.04.2026__Cornelia Azure Villas 5*__AZURE VILLAS 3 BED ROOMS ULTRA ALLвсе включено": "alone",
   "20.04.2026__Yalihan Una 4*__ECONOMY ROOM AIвсе включено": "alone",
   "20.04.2026__Yalihan Una 4*__STANDARD ROOM AIвсе включено": "alone",
-  "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "behind",
+  "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "ahead",
   "20.06.2026__Best Western Plus Khan Hotel 4*__DELUXE SUITE BBзавтраки": "alone",
   "20.06.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM HBзавтраки и ужины": "alone",
   "20.06.2026__Best Western Plus Khan Hotel 4*__KING SUITE BBзавтраки": "alone",
@@ -3866,7 +3866,7 @@
   "20.05.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "behind",
   "15.04.2026__Titanic Deluxe Golf Belek 5*__SUPERIOR ROOM DELUXE AI AIвсе включено": "behind",
   "15.05.2026__Titanic Deluxe Golf Belek 5*__SUPERIOR ROOM DELUXE AI AIвсе включено": "behind",
-  "20.05.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "ahead",
+  "20.05.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIвсе включено": "behind",
   "20.05.2026__Golden Lotus 4*__STANDARD ROOM AIвсе включено": "alone",
   "15.06.2026__Titanic Deluxe Golf Belek 5*__STANDARD ROOM DELUXE AI AIвсе включено": "behind",
   "20.06.2026__Bijal 5*__VILLA 1 BEDROOM BBзавтраки": "alone",
@@ -4437,5 +4437,6 @@
   "08.04.2026__Selene Beach & SPA 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "08.04.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone",
   "08.04.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIвсе включено": "behind",
-  "08.04.2026__Luna Blanca Resort & SPA 5*__LAND SIDE STANDARD ROOM ULTRA ALLвсе включено": "alone"
+  "08.04.2026__Luna Blanca Resort & SPA 5*__LAND SIDE STANDARD ROOM ULTRA ALLвсе включено": "alone",
+  "08.04.2026__Selenium Hotel 4*__ECONOMY ROOM HBзавтраки и ужины": "behind"
 }
