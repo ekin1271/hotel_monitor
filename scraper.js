@@ -108,17 +108,14 @@ async function sendTelegramSplit(aheadAlerts, equalAlerts) {
         block += `  📅 ${a.checkIn} 🟡 Fiyatlar eşit\n`;
         block += `     📌 Peninsula = ${a.cheapestAgency}: ${a.peninsulaPrice} EUR\n`;
       } else if (a.newRival && !a.rivalAhead) {
-        // Rakip ilk kez göründü, biz öndeyiz
         block += `  📅 ${a.checkIn} 🆕 Rakip girdi (biz öndeyiz)\n`;
         block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
         block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR\n`;
       } else if (a.newRival && a.rivalAhead) {
-        // Rakip ilk kez göründü, biz gerideyiz
         block += `  📅 ${a.checkIn} 🆕 Rakip girdi (gerideyiz)\n`;
         block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
         block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR (Fark: ${a.diff} EUR)\n`;
       } else {
-        // Önceden bilinen rakip öne geçti
         block += `  📅 ${a.checkIn} 🚨 Rakip öne geçti\n`;
         block += `     📌 Peninsula: ${a.peninsulaPrice} EUR\n`;
         block += `     🏆 ${a.cheapestAgency}: ${a.cheapestPrice} EUR (Fark: ${a.diff} EUR)\n`;
@@ -158,14 +155,47 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
       return null;
     }
 
-    let hotelName = '';
-    const hotelLink = document.querySelector('a[href*="action=shw"]');
-    if (hotelLink) hotelName = hotelLink.textContent.trim();
+    // ─── YENİ: Otel adını her b-pr bloğu için ayrı ayrı çek ───────────────
+    // Site artık otel adını her b-pr bloğunun üstündeki b-pt satırında
+    // div.c_h_l > a > span.name içinde tutuyor.
+    // Fallback olarak eski selector'ı ve page-level alternatiflerini dene.
+    function getHotelNameForBlock(block) {
+      // Yöntem 1: bloğun closest table'ından üst satıra bak (b-pt tr'si)
+      const table = block.closest('table');
+      if (table) {
+        // b-pt sınıfındaki tr içindeki span.name
+        const nameSpan = table.querySelector('tr.b-pt span.name, tr.b-p_t span.name');
+        if (nameSpan && nameSpan.textContent.trim()) return nameSpan.textContent.trim();
+
+        // div.c_h_l içindeki a > span.name
+        const chlSpan = table.querySelector('div.c_h_l a span.name, div.c_h_l span.name');
+        if (chlSpan && chlSpan.textContent.trim()) return chlSpan.textContent.trim();
+
+        // div.c_h_l içindeki a'nın text'i
+        const chlA = table.querySelector('div.c_h_l a');
+        if (chlA && chlA.textContent.trim()) return chlA.textContent.trim();
+      }
+
+      // Yöntem 2: b-pf div'inin parent table'ında c_hl hücresi
+      const bpf = block.closest('div.b-pf');
+      if (bpf) {
+        const nameSpan = bpf.querySelector('span.name');
+        if (nameSpan && nameSpan.textContent.trim()) return nameSpan.textContent.trim();
+      }
+
+      // Yöntem 3 (eski davranış): page-level a[href*="action=shw"]
+      const legacyLink = document.querySelector('a[href*="action=shw"]');
+      if (legacyLink) return legacyLink.textContent.trim();
+
+      return '';
+    }
 
     const offers = [];
     const blocks = document.querySelectorAll('div.b-pr');
 
     for (const block of blocks) {
+      const hotelName = getHotelNameForBlock(block);
+
       const allRows = block.querySelectorAll('tr');
       let peninsulaPrice = null;
       let peninsulaRoomName = '';
@@ -190,7 +220,6 @@ async function scrapePageOnce(browser, targetUrl, checkIn) {
         if (!agency) continue;
 
         let price = null;
-        // EUR fiyatı linkteki x= parametresinden alınır
         const priceLink = tr.querySelector('td.c_pe a[href*="x="]');
         if (priceLink) {
           const m = (priceLink.getAttribute('href') || '').match(/[?&]x=(\d+)/);
@@ -263,7 +292,6 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
     newState[key] = rivalAhead ? 'ahead' : isEqual ? 'equal' : 'behind';
 
     if (isNew && rivalAhead) {
-      // Rakip ilk kez göründü ve zaten bizden ucuz → "Rakip girdi (gerideyiz)"
       aheadAlerts.push({
         checkIn, hotel: o.hotelName, room: o.roomType,
         peninsulaPrice: o.peninsulaPrice,
@@ -278,7 +306,6 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
         cheapestAgency: cheapest.agency, cheapestPrice: cheapest.price,
       });
     } else if (isNew && !rivalAhead && !isEqual) {
-      // Rakip ilk kez göründü, biz öndeyiz → "Rakip girdi (biz öndeyiz)"
       aheadAlerts.push({
         checkIn, hotel: o.hotelName, room: o.roomType,
         peninsulaPrice: o.peninsulaPrice,
@@ -286,7 +313,6 @@ function analyzeOffers(checkIn, offers, prevState, newState) {
         diff: 0, newRival: true, rivalAhead: false,
       });
     } else if (!isNew && rivalAhead && prevStatus !== 'ahead') {
-      // Önceden bilinen rakip şimdi öne geçti → "Rakip öne geçti"
       aheadAlerts.push({
         checkIn, hotel: o.hotelName, room: o.roomType,
         peninsulaPrice: o.peninsulaPrice,
