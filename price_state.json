@@ -128,7 +128,7 @@
   "15.05.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIвсе включено": "ahead",
   "15.05.2026__Sey Beach Hotel & Spa 4*__STANDARD ECO ROOM AIвсе включено": "alone",
   "15.05.2026__Beso Hotel Berke Ranch & Nature (ex. Berke Ranch And Nature) Boutique__STANDARD ROOM BBзавтраки": "behind",
-  "15.05.2026__Campus Hill Hotel 5*__STANDART ROOM AIвсе включено": "behind",
+  "15.05.2026__Campus Hill Hotel 5*__STANDART ROOM AIвсе включено": "ahead",
   "15.05.2026__Selene Beach & SPA 5*__STANDARD ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
   "15.05.2026__Perre Delta Resort Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLвсе включено": "behind",
   "15.05.2026__Barhan Beach Hotel 3*__STANDARD ROOM AIвсе включено": "ahead",
@@ -792,5 +792,9 @@
   "20.05.2026__Alanya Beach Hotel 3*__STANDARD ROOM BBзавтраки": "alone",
   "20.05.2026__Sy Hotels Belek Boutique Luxury 5*__DELUXE LANDVIEW ROOM ULTRA ALLвсе включено": "alone",
   "20.07.2026__Royal Dragon Hotel 5*__SUPERIOR STANDARDROOM LAND VIEW ULTRA ALLвсе включено": "ahead",
-  "20.07.2026__Ducale Lara 5*__STANDART DELUXE TERRACE GARDEN VIEW ULTRA ALLвсе включено": "alone"
+  "20.07.2026__Ducale Lara 5*__STANDART DELUXE TERRACE GARDEN VIEW ULTRA ALLвсе включено": "alone",
+  "14.04.2026__Yalihan Aspendos 3*__STANDARD  ROOM AI AIвсе включено": "alone",
+  "20.06.2026__Neptun Hotel 3*__ECONOMY ROOM BBзавтраки": "alone",
+  "20.06.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLвсе включено": "alone",
+  "20.06.2026__Infinity Beach Hotel 4*__STANDARD ROOM AIвсе включено": "alone"
 }
