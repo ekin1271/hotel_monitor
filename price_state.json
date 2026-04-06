@@ -566,7 +566,7 @@
   "20.05.2026__Gurtas 3*__STANDARD ROOM BBзавтраки": "alone",
   "20.05.2026__Relax Beach Hotel 4*__STANDARD ROOM AIвсе включено": "ahead",
   "20.05.2026__Eos Beach Resort 4*__LAND VIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
-  "20.05.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "equal",
+  "20.05.2026__Atalla Hotel 3*__STANDARD ROOM BBзавтраки": "ahead",
   "20.05.2026__Best Western Plus Khan Hotel 4*__STANDARD ROOM BBзавтраки": "ahead",
   "20.05.2026__Dobedan Beach Resort Comfort 5*__SIDE SEAVIEW STANDARD ROOM ULTRA ALLвсе включено": "alone",
   "20.06.2026__Rich Melissa Hotel 4*__STANDARD ROOM AIвсе включено": "ahead",
@@ -1132,5 +1132,11 @@
   "16.04.2026__Kaptan Hotel 4*__ECONOMY ROOM BBзавтраки": "behind",
   "16.04.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBзавтраки": "alone",
   "20.07.2026__Der Inn Hotel Konyaalti Boutique__ECONOMY ROOM BB BBзавтраки": "ahead",
-  "20.07.2026__Falcon 1511 Boutique Hotel Boutique__PROMO FRENCH BED BBзавтраки": "alone"
+  "20.07.2026__Falcon 1511 Boutique Hotel Boutique__PROMO FRENCH BED BBзавтраки": "alone",
+  "16.04.2026__Ananea Kleopatra Beach (ex. Cooks Club Alanya) (only adults 12+) 4*__STANDARD ROOM BB BBзавтраки": "alone",
+  "16.04.2026__Papillon Ayscha Hotel 5*__STANDART ROOM LAND VIEW ULTRA ALLвсе включено": "alone",
+  "16.04.2026__Papillon Zeugma Hotel 5*__SUPERIOR LANDVIEW ROOM HIGH CLASS SPO EXTRA SERVICES ULTRA ALLвсе включено": "alone",
+  "16.04.2026__Alp Pasa Hotel -*__STANDARD ROOM BBзавтраки": "equal",
+  "20.05.2026__Robinson Club Camyuva (only adults 18+) 5*__DOUBLE ROOM CLASSIC AIвсе включено": "alone",
+  "20.05.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIвсе включено": "ahead"
 }
