@@ -1334,7 +1334,7 @@
   "12.04.2026__Anjeliq Downtown 3*__STANDARD ROOM BBЗАВТРАКИ": "ahead",
   "12.04.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBЗАВТРАКИ": "alone",
   "12.04.2026__Vox Maris Resort (only adults 16+) 5*__STANDARD POOL SIDE ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
-  "15.05.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "15.05.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "behind",
   "15.05.2026__Savk Hotel 4*__SIDE SEAVIEW STANDARD ROOM HBЗАВТРАКИ И УЖИНЫ": "alone",
   "15.05.2026__Holiday Inn Antalya Lara 5*__STANDARD ROOM LAND VIEW BBЗАВТРАКИ": "ahead",
   "15.05.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "equal",
@@ -1531,7 +1531,7 @@
   "15.06.2026__IC Hotels Residence 5*__LAKE VILLA ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
   "15.06.2026__Gold Twins Hotel Boutique__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
   "15.06.2026__Vox Maris Resort (only adults 16+) 5*__STANDARD LAND SIDE ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "behind",
-  "15.07.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "15.07.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "behind",
   "15.07.2026__Savk Hotel 4*__SIDE SEAVIEW STANDARD ROOM HBЗАВТРАКИ И УЖИНЫ": "alone",
   "15.07.2026__Holiday Inn Antalya Lara 5*__STANDARD ROOM LAND VIEW BBЗАВТРАКИ": "ahead",
   "15.07.2026__En Vie Beach Hotel (only adults 16+) Boutique__STANDARD ROOM SUN BUILDING BBЗАВТРАКИ": "alone",
@@ -1740,7 +1740,7 @@
   "20.05.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "behind",
   "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.05.2026__Kaptan Hotel 4*__ECONOMY ROOM BBЗАВТРАКИ": "behind",
-  "15.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "15.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "behind",
   "15.06.2026__Holiday Inn Antalya Lara 5*__STANDARD ROOM LAND VIEW BBЗАВТРАКИ": "ahead",
   "15.06.2026__Merve Sun Hotel&Spa 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
   "15.06.2026__Elysium Elite Hotel & Spa 4*__LANDVIEW STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
@@ -2003,5 +2003,9 @@
   "20.05.2026__Mielo Lara Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "alone",
   "20.06.2026__Titanic Deluxe Lara 5*__SIDE SEAVIEW STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
   "20.06.2026__Limak Lara 5*__STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.06.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBЗАВТРАКИ": "behind"
+  "20.06.2026__Antique Roman Palace (only adults 16+) 5*__STANDARD ROOM BB BBЗАВТРАКИ": "behind",
+  "18.04.2026__Wasa Hotel 3*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
+  "20.05.2026__Commodore Elite Suites Spa (only adults 18+) 5*__ELITE SEA VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.05.2026__Golden Lotus 4*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
+  "20.05.2026__Hedef Resort Hotel  5*__STANDARD ROOM NON ALCOHOL Soft AIВСЕ ВКЛЮЧЕНО": "ahead"
 }
