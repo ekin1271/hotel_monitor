@@ -2439,5 +2439,9 @@
   "20.04.2026__Floria Beach Hotel 4*__SIDE SEAVIEW STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
   "20.06.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "20.06.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.06.2026__Elysee Beach Hotel 3*__STANDARD ROOM HBЗАВТРАКИ И УЖИНЫ": "alone"
+  "20.06.2026__Elysee Beach Hotel 3*__STANDARD ROOM HBЗАВТРАКИ И УЖИНЫ": "alone",
+  "20.04.2026__Gold Twins Hotel Boutique__STANDARD ROOM BBЗАВТРАКИ": "alone",
+  "20.05.2026__Lara Garden Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "behind",
+  "20.06.2026__Bijal 5*__VILLA 1 BEDROOM BBЗАВТРАКИ": "equal",
+  "20.07.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone"
 }
