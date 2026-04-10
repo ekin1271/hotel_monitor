@@ -1737,7 +1737,7 @@
   "20.05.2026__Relax Beach Hotel 4*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
   "20.05.2026__Atalla Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "ahead",
   "20.05.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "behind",
-  "20.05.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "behind",
+  "20.05.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "20.05.2026__Robinson Club Pamfilya 5*__DOUBLE ROOM CLASSIC AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.05.2026__Kaptan Hotel 4*__ECONOMY ROOM BBЗАВТРАКИ": "behind",
   "15.06.2026__Yesiloz 4*__ECONOMY ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "ahead",
@@ -1820,7 +1820,7 @@
   "20.06.2026__Massimo Hotel (ex. La Boutique Hotel) (only adults 16+) Boutique__STANDARD ROOM BBЗАВТРАКИ": "alone",
   "20.06.2026__Baia Lara Hotel 5*__STANDARD ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "20.07.2026__Commodore Elite Suites Spa (only adults 18+) 5*__ELITE SIDE SEA VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.07.2026__Sunmelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.07.2026__Sunmelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "17.04.2026__Der Inn Hotel Konyaalti Boutique__ECONOMY ROOM BB BBЗАВТРАКИ": "ahead",
   "17.04.2026__Yalihan Una 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.05.2026__Sunmelia Beach Resort 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
@@ -2457,5 +2457,12 @@
   "20.07.2026__Club Marakesh Beach Hotel 4*__STANDARD ROOM LAND VIEW AIВСЕ ВКЛЮЧЕНО": "ahead",
   "20.07.2026__Anjelique House Boutique__STANDARD ROOM BBЗАВТРАКИ": "ahead",
   "20.07.2026__Barhan Beach Hotel 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
-  "20.07.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead"
+  "20.07.2026__Kleopatra Fatih 4*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "20.04.2026__Der Inn Hotel Konyaalti Boutique__ECONOMY ROOM BB BBЗАВТРАКИ": "ahead",
+  "20.05.2026__Barut Hemera 5*__DELUXE GARDEN VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.06.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "20.06.2026__Alanya Beach Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "alone",
+  "20.06.2026__Idyros 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
+  "20.06.2026__Papillon Belvil Hotel 5*__COMFORT CLUB LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.07.2026__Heritage By Cimen 3*__SEAVIEW STANDARD ROOM BBЗАВТРАКИ": "alone"
 }
