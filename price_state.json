@@ -2392,7 +2392,7 @@
   "20.05.2026__Villa Sonata Hotel APARTMENT__STANDART ROOM BB BBЗАВТРАКИ": "behind",
   "20.05.2026__Idyros 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.06.2026__Club Marakesh Beach Hotel 4*__STANDARD ROOM LAND VIEW AIВСЕ ВКЛЮЧЕНО": "ahead",
-  "20.06.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "behind",
+  "20.06.2026__Kleopatra Sun Light 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
   "20.06.2026__Campus Hill Hotel 5*__STANDART ROOM AIВСЕ ВКЛЮЧЕНО": "behind",
   "20.06.2026__Mielo Lara Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "alone",
   "20.07.2026__Seaden Quality Resort & SPA 5*__STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
@@ -2435,5 +2435,9 @@
   "20.04.2026__Elysee Rive 4*__STANDARD ROOM SIDE SEA VIEW AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.05.2026__Elysium Elite Hotel & Spa 4*__LANDVIEW STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
   "20.07.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.07.2026__Arum Barut Collection 5*__SUPERIOR SEASIDE VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone"
+  "20.07.2026__Arum Barut Collection 5*__SUPERIOR SEASIDE VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.04.2026__Floria Beach Hotel 4*__SIDE SEAVIEW STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "20.06.2026__Royal Alhambra Palace Hotel 5*__SUPERIOR ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
+  "20.06.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.06.2026__Elysee Beach Hotel 3*__STANDARD ROOM HBЗАВТРАКИ И УЖИНЫ": "alone"
 }
