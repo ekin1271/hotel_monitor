@@ -1974,7 +1974,7 @@
   "15.07.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIВСЕ ВКЛЮЧЕНО": "behind",
   "18.04.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
   "15.05.2026__Paloma Oceana 5*__STANDART BUNGALOW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.05.2026__Selenium Hotel 4*__ECONOMY ROOM HBЗАВТРАКИ И УЖИНЫ": "ahead",
+  "20.05.2026__Selenium Hotel 4*__ECONOMY ROOM HBЗАВТРАКИ И УЖИНЫ": "equal",
   "20.05.2026__Concorde De Luxe Resort 5*__DELUXE SEA VIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "20.06.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "behind",
   "15.05.2026__Dobedan Exclusive Hotel & Spa 5*__FAMILY ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
@@ -2364,5 +2364,8 @@
   "20.06.2026__Falcon 1511 Boutique Hotel Boutique__STANDARD COMFORT ROOM BBЗАВТРАКИ": "alone",
   "20.07.2026__Sunprime C-Lounge (only adults 16+) 5*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
   "20.07.2026__Papillon Zeugma Hotel 5*__SUPERIOR LANDVIEW ROOM HIGH CLASS SPO EXTRA SERVICES ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.07.2026__More Hotel (non-alcohol) 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "equal"
+  "20.07.2026__More Hotel (non-alcohol) 3*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "equal",
+  "15.04.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIВСЕ ВКЛЮЧЕНО": "behind",
+  "20.05.2026__Monte Carlo 4*__ANEX BUILDING STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "behind",
+  "20.05.2026__Mary Hotels Alanya 5*__LANDVIEW STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone"
 }
