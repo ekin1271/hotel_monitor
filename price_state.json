@@ -1829,7 +1829,7 @@
   "20.05.2026__Perre Delta Resort Spa 5*__LANDVIEW STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
   "20.05.2026__Hawaii Suite Beach Hotel 3*__STANDARD ROOM WITHOUT BALCONY AIВСЕ ВКЛЮЧЕНО": "behind",
   "20.06.2026__Daima Biz Hotel 5*__STANDART ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
-  "20.06.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "ahead",
+  "20.06.2026__Cenger Beach Resort 5*__ECONOMY ROOM AIВСЕ ВКЛЮЧЕНО": "behind",
   "20.07.2026__Renex Hotel 5*__STANDARD ROOM CITY VIEW BBЗАВТРАКИ": "behind",
   "20.07.2026__Sunis Elita Beach Resort & SPA 5*__CLUB STANDARD ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "behind",
   "20.07.2026__Akka Hotels Alinda 5*__STANDARD SIDE BLOCK ROOM LANDVIEW PREMIUM AIВСЕ ВКЛЮЧЕНО": "alone",
@@ -2598,5 +2598,11 @@
   "20.05.2026__Bilem Hotel Beach & Spa 4*__STANDARD ROOM LAND VIEW AOБЕЗ ПИТАНИЯ": "alone",
   "20.06.2026__Alp Pasa Hotel -*__STANDARD ROOM BBЗАВТРАКИ": "ahead",
   "20.06.2026__Esma Clove Resort 4*__STANDARD ROOM AIВСЕ ВКЛЮЧЕНО": "alone",
-  "20.07.2026__IC Hotels Santai Family Resort 5*__STANDARD ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone"
+  "20.07.2026__IC Hotels Santai Family Resort 5*__STANDARD ROOM LAND VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "16.04.2026__Titanic Deluxe Golf Belek 5*__MALDIVE HOUSE DELUXE AI AIВСЕ ВКЛЮЧЕНО": "behind",
+  "21.04.2026__Concorde De Luxe Resort 5*__DELUXE LANDVIEW ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "ahead",
+  "21.04.2026__Rose Garden Premium 4*__STANDART ROOM ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "21.04.2026__Acanthus & Cennet Barut Collection 5*__SUPERIOR SIDE SEAVIEW & POOL VIEW ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "21.04.2026__Barut Hemera 5*__DELUXE ROOM WITH JACUZZI ON BALCONY ULTRA ALLВСЕ ВКЛЮЧЕНО": "alone",
+  "20.07.2026__Park Hotel 3*__STANDARD ROOM BBЗАВТРАКИ": "alone"
 }
